@@ -1,0 +1,23 @@
+{
+  "name": "myMenu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayceazua/myMenu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayceazua/myMenu/issues"
+  },
+  "homepage": "https://github.com/jayceazua/myMenu#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
