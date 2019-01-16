@@ -1,4 +1,5 @@
-# MyMenu
+# DigitalMenu
+
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
