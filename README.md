@@ -5,6 +5,7 @@
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
  - As a user, I want to be able to login, in order to view my restaurant’s menu.
  - As a user, I want to give out different API Keys to vendors, in order to allow them to get a secure access to my menu.
+  - As a user, I want to manage my vendors, in order to delete and add vendors that are allowed to use my menu.
  - As a vendor, I want to make a GET request to the restaurant’s menu, in order to display it in my application (i.g. GrubHub, Website, POS, Postmates, etc).
  - As a vendor, I want to make a GET request for an individual item in the restaurant’s menu, in order to display that into my hosted application.
 
