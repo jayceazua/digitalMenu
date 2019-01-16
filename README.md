@@ -1,5 +1,5 @@
 # DigitalMenu
-<img href"https://github.com/jayceazua/myMenu/blob/master/assets/readme/DigiMenu.png">
+<img href="https://github.com/jayceazua/myMenu/blob/master/assets/readme/DigiMenu.png">
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
