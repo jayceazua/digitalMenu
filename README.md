@@ -12,5 +12,6 @@
 After finishing a meeting with GrubHub, Victoria was asked to give GrubHub an updated version of Pinecrest Bakery’s complete menu. On top of GrubHub, Victoria has made several deals with other online ordering vendors like Uber Eats, Postmates, MealPal, and DoorDash. Even has a redesign company website, which all are demanding a updated complete menu of Pinecrest Bakery. Victoria is easily able to send a link of her online digital menu database. A full detailed menu that all vendors can easily access through a simple RESTful API. She can also update any changes on the menu and will update automatically to all the locations Pinecrest Bakery displays their menu. Victoria is excited to see how much time she has saved from using a single source of truth for her menu. Victoria does not need to struggle anymore like before to update each individual application in case there is a price or item change in the menu. 
 
 ### Wireframe
+[Live Update]("https://balsamiq.cloud/s282s2f/pve4ia6")
 ### Entity Relationship Diagram
 <img src="./assets/readme/digitalMenu_ERD.png"/>
