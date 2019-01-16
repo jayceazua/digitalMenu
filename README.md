@@ -13,4 +13,4 @@ After finishing a meeting with GrubHub, Victoria was asked to give GrubHub an up
 
 ### Wireframe
 ### Entity Relationship Diagram
-<img src="./assets.readme/digitalMenu_ERD.png"/>
+<img src="./assets/readme/digitalMenu_ERD.png"/>
