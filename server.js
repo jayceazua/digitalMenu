@@ -22,7 +22,9 @@ app.use(methodOverride((req, res) => {
 }));
 
 // routes
+const website = require('./controllers/index');
 const restaurants = require('./controllers/restaurants');
+app.use(website);
 app.use(restaurants);
 
 app.listen(port, () => {
