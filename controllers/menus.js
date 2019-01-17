@@ -34,7 +34,6 @@ menusRouter.get('/menu/:id/edit', (req, res) => {
   res.send('GET form to edit');
 });
 
-
 // connecting to individual items
 const items = require('./items');
 menusRouter.use('/menu/:id', (req, res, next) => {

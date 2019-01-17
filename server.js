@@ -1,4 +1,3 @@
-"use strict";
 require('dotenv').config();
 const path = require('path');
 const express = require("express");
@@ -7,6 +6,10 @@ const app = express();
 const port = process.env.PORT || 3000
 
 // database connection
+
+// setting up middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // routes
 const restaurants = require('./controllers/restaurants');
