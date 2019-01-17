@@ -12,7 +12,7 @@ menusRouter.route('/menu')
 
 // NEW
 menusRouter.get('/menu/new', (req, res) => {
-  res.send('GET form to create a menu menu');
+  res.send('GET form to create a menu');
 });
 
 menusRouter.route('/menu/:id')
@@ -28,8 +28,9 @@ menusRouter.route('/menu/:id')
   .delete((req, res) => {
     res.json('DELETE a menu and it\'s items');
   });
+
 // EDIT
-menusRouter.get('/:id/edit', (req, res) => {
+menusRouter.get('/menu/:id/edit', (req, res) => {
   res.send('GET form to edit');
 });
 
