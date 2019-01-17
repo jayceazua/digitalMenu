@@ -10,6 +10,16 @@ require('./database/mongodb');
 // setting up middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// override with POST having ?_method=DELETE & ?_method=PUT
+app.use(methodOverride('X-HTTP-Method-Override'));
+app.use(methodOverride('_method'));
+app.use(methodOverride((req, res) => {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    let method = req.body._method;
+    delete req.body._method;
+    return method;
+  };
+}));
 
 // routes
 const restaurants = require('./controllers/restaurants');
