@@ -9,8 +9,8 @@ const port = process.env.PORT || 3000
 // database connection
 
 // routes
-const menus = require('./controllers/menus');
-app.use(menus);
+const restaurants = require('./controllers/restaurants');
+app.use(restaurants);
 
 app.listen(port, () => {
   console.log(`Your menu is listening on port: ${port}`)

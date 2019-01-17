@@ -1,10 +1,11 @@
 const itemsRouter = require('express').Router();
 
+// INDEX
+// NEW
 // CREATE
-// READ
+// SHOW
+// EDIT
 // UPDATE
 // DELETE
 
-module.exports = {
-  itemsRouter
-}
+module.exports = itemsRouter
