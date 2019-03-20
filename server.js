@@ -24,7 +24,7 @@ app.use(methodOverride((req, res) => {
 // routes
 const website = require('./controllers/index');
 const restaurants = require('./controllers/restaurants');
-app.use(website);
+app.use(website); // Asim you code your stuff here for the frontend.
 app.use(restaurants);
 
 app.listen(port, () => {
