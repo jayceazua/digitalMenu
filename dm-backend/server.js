@@ -22,8 +22,8 @@ app.use(methodOverride((req, res) => {
 }));
 
 // routes
-const website = require('./controllers/index'); // Asim here goes the frontend code.
-const restaurants = require('./controllers/restaurants');
+const website = require('./routes/index'); // Asim here goes the frontend code.
+const restaurants = require('./routes/restaurants');
 app.use(website); // Asim you code your stuff here for the frontend.
 app.use(restaurants);
 
