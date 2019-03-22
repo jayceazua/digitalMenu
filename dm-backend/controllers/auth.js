@@ -13,12 +13,13 @@ const {
 
 // CREATE NEW USER
 const signup = (req, res) => {
-  const user = new User(req.body);
+  const body = _.pick(req.body, ['firstName', 'lastName', 'email', 'password']);
+  const user = new User(body);
   user.save().then(() => {
     sendEmail(user);
     return user.generateAuthToken();
   }).then((token) => {
-      res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
+    res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
   }).catch((e) => {
     res.status(400).json(e);
   });
@@ -28,16 +29,13 @@ const signup = (req, res) => {
 // LOGS IN USER
 const login = (req, res) => {
   const body = _.pick(req.body, ['email', 'password']);
-
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken()
     .then((token) => {
-      
       res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
-
-    });
-  }).catch((err) => {
-    res.status(400).json(err);
+    }).catch(e => res.json(e));
+  }).catch((e) => {
+    res.status(400).json(e);
   });
 };
 
@@ -46,11 +44,10 @@ const login = (req, res) => {
 
 // LOGS OUT USER
 const logout = (req, res) => {
-  req.user.removeToken(req.token).then(() => {
-    res.status(200).json();
-  }, () => {
-    res.status(400).json();
-  });
+    res.clearCookie('x-auth');
+    res.json({
+      "User": "Successfully logged out."
+    });
 };
 
 module.exports = {

@@ -73,13 +73,10 @@ UserSchema.methods.toJSON = function () {
   return _.pick(userObject, ['_id', 'email']);
 }
 
-UserSchema.methods.generateAuthToken = function () {
+UserSchema.methods.generateAuthToken = function() {
   let user = this;
   let access = 'auth';
-  let token = jwt.sign({
-    _id: user._id.toHexString(),
-    access
-  }, process.env.SECRET).toString();
+  let token = jwt.sign({ _id: user._id.toHexString(), access }, process.env.SECRET, { expiresIn: "60 days" }).toString();
   // user.tokens.push({ access, token })
   user.tokens = user.tokens.concat([{
     access,

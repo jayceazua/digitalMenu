@@ -1,5 +1,6 @@
 require('dotenv').config();
 const path = require('path');
+const cors = require('cors');
 const express = require("express");
 const methodOverride = require('method-override');
 const app = express();
@@ -8,8 +9,10 @@ const port = process.env.PORT || 3000
 // database connection
 require('./database/mongodb');
 // setting up middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public'))); // <- maybe add this for testing
 // override with POST having ?_method=DELETE & ?_method=PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(methodOverride('_method'));
@@ -21,10 +24,14 @@ app.use(methodOverride((req, res) => {
   };
 }));
 
+
+
 // routes
-const website = require('./routes/index'); // Asim here goes the frontend code.
+// const website = require('./routes/index'); // Asim here goes the frontend code.
+const auth = require('./routes/auth');
 const restaurants = require('./routes/restaurants');
-app.use(website); // Asim you code your stuff here for the frontend.
+// app.use(website); // Asim you code your stuff here for the frontend.
+app.use(auth)
 app.use(restaurants);
 
 app.listen(port, () => {
