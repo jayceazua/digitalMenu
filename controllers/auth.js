@@ -16,7 +16,7 @@ const signup = (req, res) => {
   const body = _.pick(req.body, ['firstName', 'lastName', 'email', 'password']);
   const user = new User(body);
   user.save().then(() => {
-    sendEmail(user);
+    // sendEmail(user);
     return user.generateAuthToken();
   }).then((token) => {
     res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
