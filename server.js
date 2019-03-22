@@ -27,12 +27,16 @@ app.use(methodOverride((req, res) => {
 
 
 // routes
-// const website = require('./routes/index'); // Asim here goes the frontend code.
+app.get('/', (req, res) => {
+  res.send('Welcome to the digital menu backend api')
+});
+
 const auth = require('./routes/auth');
 const restaurants = require('./routes/restaurants');
-// app.use(website); // Asim you code your stuff here for the frontend.
 app.use(auth)
 app.use(restaurants);
+
+
 
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}`)
