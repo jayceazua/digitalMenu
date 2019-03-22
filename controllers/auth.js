@@ -20,6 +20,7 @@ const signup = (req, res) => {
     return user.generateAuthToken();
   }).then((token) => {
     res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
+    res.redirect('/');
   }).catch((e) => {
     res.status(400).json(e);
   });
