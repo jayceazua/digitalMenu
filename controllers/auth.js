@@ -3,57 +3,41 @@
  * Date: 03/22/2019 
  */
 const _ = require('lodash');
-const {
-  User
-} = require('../models/user');
-
-const {
-  sendEmail
-} = require('../middleware/mailgun-config');
+const { User } = require('../models/user');
+const { sendEmail } = require('../middleware/mailgun-config');
 
 // CREATE NEW USER
 const signup = (req, res) => {
   const body = _.pick(req.body, ['firstName', 'lastName', 'email', 'password']);
   const user = new User(body);
   user.save().then(() => {
-    // sendEmail(user);
+    sendEmail(user);
     return user.generateAuthToken();
   }).then((token) => {
-    res.cookie('nToken', token, {
-      maxAge: 900000,
-      httpOnly: true
-    });
-    console.log(res.cookie)
-    res.json('User created')
+    res.header('x-auth', token).json(user);
   }).catch((e) => {
     res.status(400).json(e);
   });
 };
-
 
 // LOGS IN USER
 const login = (req, res) => {
   const body = _.pick(req.body, ['email', 'password']);
   User.findByCredentials(body.email, body.password).then((user) => {
-    return user.generateAuthToken()
-    .then((token) => {
-      res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-      console.log(res.cookies)
-      res.json("User logged in")
-    }).catch(e => res.json(e));
-  }).catch((e) => {
-    res.status(400).json(e);
+    return user.generateAuthToken().then((token) => {
+      res.header('x-auth', token).json({
+        token
+      });
+    });
+  }).catch((err) => {
+    res.status(400).json(err);
   });
 };
-
-
-
 
 // LOGS OUT USER
 const logout = (req, res) => {
   req.user.removeToken(req.token).then(() => {
-    res.clearCookie('nToken');
-    res.json("Successfully logged out.")
+    res.status(200).json();
   }, () => {
     res.status(400).json();
   });
