@@ -19,8 +19,12 @@ const signup = (req, res) => {
     // sendEmail(user);
     return user.generateAuthToken();
   }).then((token) => {
-    res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
-    res.redirect('/');
+    res.cookie('nToken', token, {
+      maxAge: 900000,
+      httpOnly: true
+    });
+    console.log(res.cookie)
+    res.json('User created')
   }).catch((e) => {
     res.status(400).json(e);
   });
@@ -33,7 +37,9 @@ const login = (req, res) => {
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken()
     .then((token) => {
-      res.cookie('x-auth', token, { maxAge: 900000, httpOnly: true });
+      res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
+      console.log(res.cookies)
+      res.json("User logged in")
     }).catch(e => res.json(e));
   }).catch((e) => {
     res.status(400).json(e);
@@ -45,10 +51,12 @@ const login = (req, res) => {
 
 // LOGS OUT USER
 const logout = (req, res) => {
-    res.clearCookie('x-auth');
-    res.json({
-      "User": "Successfully logged out."
-    });
+  req.user.removeToken(req.token).then(() => {
+    res.clearCookie('nToken');
+    res.json("Successfully logged out.")
+  }, () => {
+    res.status(400).json();
+  });
 };
 
 module.exports = {
