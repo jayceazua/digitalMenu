@@ -28,7 +28,7 @@ app.use(methodOverride((req, res) => {
 
 // routes
 app.get('/', (req, res) => {
-  res.send('Welcome to the digital menu backend api')
+  res.json('Welcome to the digital menu backend api')
 });
 
 const auth = require('./routes/auth');

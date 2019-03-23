@@ -11,18 +11,22 @@ const jwt = require('jsonwebtoken');
 /** Sign up users/ register them */
 const signup = (req, res) => {
   const user = new User(req.body);
-  console.log("user:", user)
+  
   user.save().then((user) => {
+
+    // Generates a token
     var token = jwt.sign({
       _id: user._id
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
+
+    // Set token as a cookie
     res.cookie('nToken', token, {
       maxAge: 900000,
       httpOnly: true
     });
-    // res.redirect('/api/v1/users');
+    res.redirect('/', 301);
   }).catch(err => res.json(err))
 }
 
@@ -34,16 +38,13 @@ const login = (req, res) => {
   const password = req.body.password;
 
   // Find this user name
-  User.findOne({
-      email
-    }, "username password")
-    .then(user => {
+  User.findOne({email}, "username password")
+    .then((user) => {
       if (!user) {
         // User not found
-        return res.status(401).send({
-          message: "Wrong Username or Password"
-        });
+        return res.status(401).json("Wrong Username or Password");
       }
+
       // Check the password
       user.comparePassword(password, (err, isMatch) => {
         if (!isMatch) {
@@ -52,6 +53,7 @@ const login = (req, res) => {
             message: "Wrong Username or password"
           });
         }
+
         // Create a token
         const token = jwt.sign({
           _id: user._id,
@@ -59,18 +61,18 @@ const login = (req, res) => {
         }, process.env.SECRET, {
           expiresIn: "60 days"
         });
+
         // Set a cookie and redirect to root
         res.cookie("nToken", token, {
           maxAge: 900000,
           httpOnly: true
         });
 
-        res.json({
-          user
-        })
+        res.json("Successfully logged in.")
+
       });
-    })
-    .catch(err => {
+
+    }).catch((err) => {
       console.log(err);
     });
 };
@@ -79,9 +81,7 @@ const login = (req, res) => {
 /** have users logout <- don't worry about this */
 const logout = (req, res) => {
   res.clearCookie('nToken');
-  res.json({
-    "User": "Successfully logged out."
-  });
+  res.json("Successfully logged out.");
 };
 
 module.exports = {
