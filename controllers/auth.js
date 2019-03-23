@@ -27,7 +27,7 @@ const signup = (req, res) => {
       httpOnly: true
     });
     res.redirect(301, '/');
-  }).catch(err => res.json(err))
+  }).catch(err => res.json(err));
 }
 
 // LOGIN
