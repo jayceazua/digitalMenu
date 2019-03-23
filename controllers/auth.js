@@ -11,7 +11,7 @@ const jwt = require('jsonwebtoken');
 /** Sign up users/ register them */
 const signup = (req, res) => {
   const user = new User(req.body);
-  
+
   user.save().then((user) => {
 
     // Generates a token
@@ -26,7 +26,7 @@ const signup = (req, res) => {
       maxAge: 900000,
       httpOnly: true
     });
-    res.redirect('/', 301);
+    res.redirect(301, '/');
   }).catch(err => res.json(err))
 }
 

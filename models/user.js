@@ -6,18 +6,19 @@
     
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema; 
-
 const validator = require('validator');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const _ = require('lodash');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new Schema({
+
   fullname: {
     type: String, 
     trim: true, 
     required: true
   },
+
   email: {
     type: String,
     required: [true, 'Email Required'],
@@ -29,11 +30,13 @@ const UserSchema = new Schema({
       message: `{VALUE} not a valid email`
       }
     },
+
     password: {
       type: String,
       required: [true, 'Password Required'],
       minlength: [6, 'Password must be longer than 6 characters.'],
-    },
+    }
+
 }, {
   timestamps: true
 });
@@ -64,7 +67,9 @@ UserSchema.methods.comparePassword = function(password, done) {
   });
 };
 UserSchema.index({fields: 'text'});
-module.exports = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema);
+
+module.exports = User
 
 //  ====================================================
 
@@ -155,6 +160,3 @@ module.exports = mongoose.model("User", UserSchema);
 // });
 
 // const User = mongoose.model('User', UserSchema);
-// module.exports = {
-//   User
-// }
