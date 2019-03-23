@@ -1,22 +1,29 @@
-const { User } = require('../models/user');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 // middle for authorization
-const authorization = (req, res, next) => {
-  let token = req.get('x-auth');
+const auth = (req, res, next) => {
+  let token = req.headers.cookie;
+  if (!token) {
+    return res.status(401).send();
+  } else {
+    let cookieToken = req.headers.cookie.split("=")[1]
+    // verify a token symmetric - synchronous
+    let userId = jwt.verify(cookieToken, process.env.SECRET)._id;
 
-  User.findByToken(token)
-    .then((user) => {
-      if (!user) {
-        return Promise.reject(); // might change this if we need unauth users
-      }
-      req.user = user;
-      req.token = token;
-      next();
-    })
-    .catch((err) => {
-      res.status(401).json();
-    });
+    User.findById(userId)
+      .then((user) => {
+        if (!user) {
+          return Promise.reject()
+        }
+        console.log("Authorized user!");
+        next();
+      })
+      .catch((err) => {
+        res.status(401).send();
+      })
+  }
 }
 
 module.exports = {
-  authorization
+  auth
 }

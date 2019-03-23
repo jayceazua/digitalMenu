@@ -3,43 +3,84 @@
  * Date: 03/22/2019 
  */
 const _ = require('lodash');
-const { User } = require('../models/user');
-const { sendEmail } = require('../middleware/mailgun-config');
+const User = require('../models/user');
+const jwt = require('jsonwebtoken');
+// const { sendEmail } = require('../middleware/mailgun-config');
 
-// CREATE NEW USER
+// CREATE / SIGNUP
+/** Sign up users/ register them */
 const signup = (req, res) => {
-  const body = _.pick(req.body, ['firstName', 'lastName', 'email', 'password']);
-  const user = new User(body);
-  user.save().then(() => {
-    sendEmail(user);
-    return user.generateAuthToken();
-  }).then((token) => {
-    res.header('x-auth', token).json(user);
-  }).catch((e) => {
-    res.status(400).json(e);
-  });
-};
-
-// LOGS IN USER
-const login = (req, res) => {
-  const body = _.pick(req.body, ['email', 'password']);
-  User.findByCredentials(body.email, body.password).then((user) => {
-    return user.generateAuthToken().then((token) => {
-      res.header('x-auth', token).json({
-        token
-      });
+  const user = new User(req.body);
+  console.log("user:", user)
+  user.save().then((user) => {
+    var token = jwt.sign({
+      _id: user._id
+    }, process.env.SECRET, {
+      expiresIn: "60 days"
     });
-  }).catch((err) => {
-    res.status(400).json(err);
-  });
+    res.cookie('nToken', token, {
+      maxAge: 900000,
+      httpOnly: true
+    });
+    // res.redirect('/api/v1/users');
+  }).catch(err => res.json(err))
+}
+
+// LOGIN
+/** have users login <- don't worry about this */
+const login = (req, res) => {
+
+  const email = req.body.email;
+  const password = req.body.password;
+
+  // Find this user name
+  User.findOne({
+      email
+    }, "username password")
+    .then(user => {
+      if (!user) {
+        // User not found
+        return res.status(401).send({
+          message: "Wrong Username or Password"
+        });
+      }
+      // Check the password
+      user.comparePassword(password, (err, isMatch) => {
+        if (!isMatch) {
+          // Password does not match
+          return res.status(401).send({
+            message: "Wrong Username or password"
+          });
+        }
+        // Create a token
+        const token = jwt.sign({
+          _id: user._id,
+          email: user.email
+        }, process.env.SECRET, {
+          expiresIn: "60 days"
+        });
+        // Set a cookie and redirect to root
+        res.cookie("nToken", token, {
+          maxAge: 900000,
+          httpOnly: true
+        });
+
+        res.json({
+          user
+        })
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
-// LOGS OUT USER
+//LOGOUT
+/** have users logout <- don't worry about this */
 const logout = (req, res) => {
-  req.user.removeToken(req.token).then(() => {
-    res.status(200).json();
-  }, () => {
-    res.status(400).json();
+  res.clearCookie('nToken');
+  res.json({
+    "User": "Successfully logged out."
   });
 };
 
