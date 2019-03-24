@@ -14,6 +14,8 @@ const RestaurantSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Location'
   }]
+}, {
+  timestamps: true
 });
 
 

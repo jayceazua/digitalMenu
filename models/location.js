@@ -28,6 +28,8 @@ const LocationSchema = new Schema({
       }
     },
     // menu/ items/ price adjustments
+}, {
+  timestamps: true
 });
 
 const Location = mongoose.model("Location", LocationSchema);
