@@ -10,27 +10,12 @@ const RestaurantSchema = new Schema({
     required: true,
     lowercase: true
   },
-  // address
-  restaurantLocation: {
-    type: String,
-    required: true
-  },
-  // phone
-  restaurantPhone: {
-    type: String,
-    trim: true,
-    index: true,
-    unique: true,
-    validate: {
-      validator: validator.isMobilePhone,
-      message: `{VALUE} not a valid phone number`
-    }
+  locations: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
-  // store id
 });
 
 
 const Restaurant = mongoose.model('Restaurant', RestaurantSchema);
-module.exports = {
-  Restaurant
-};
+module.exports = { Restaurant };

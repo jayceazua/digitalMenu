@@ -21,11 +21,11 @@ restaurantsRouter.route('/restaurant/:id')
 restaurantsRouter.get('/restaurant/:id/edit', /** Frontend stuff goes here. */);
 
 // connecting to individual menus
-const menus = require('./menus');
+const locations = require('./locations');
 restaurantsRouter.use('/restaurant/:id', (req, res, next) => {
   req.restaurantId = req.params.id;
   next();
-}, menus);
+}, locations);
 
 
 module.exports = restaurantsRouter
