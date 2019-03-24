@@ -9,9 +9,11 @@ const LocationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Restaurant'
   },
-  // address
+  // TODO: switch to yelp or google or facebook business api 
   restaurantLocation: {
       type: String,
+      index: true,
+      unique: true,
       required: true
     },
     // phone
