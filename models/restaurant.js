@@ -10,10 +10,10 @@ const RestaurantSchema = new Schema({
     required: true,
     lowercase: true
   },
-  locations: {
-    type: mongoose.Schema.Types.ObjectId,
+  locations: [{
+    type: Schema.Types.ObjectId,
     ref: 'User'
-  }
+  }]
 });
 
 
