@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
+  location: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Location'
+  }],
   itemName: {
     type: String,
     required: true
@@ -14,6 +18,8 @@ const ItemSchema = new Schema({
     type: String,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 

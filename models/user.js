@@ -35,7 +35,12 @@ const UserSchema = new Schema({
       type: String,
       required: [true, 'Password Required'],
       minlength: [6, 'Password must be longer than 6 characters.'],
-    }
+    },
+
+    restaurant: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Restaurant'
+    }]
 
 }, {
   timestamps: true
