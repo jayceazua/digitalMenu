@@ -12,7 +12,7 @@ const RestaurantSchema = new Schema({
   },
   locations: [{
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Location'
   }]
 });
 
