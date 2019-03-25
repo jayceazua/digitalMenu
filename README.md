@@ -4,7 +4,7 @@
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**
 
 ## API Endpoints
-
+## User Profiles
 **`POST /users/v0/signup`**
     - **Arguments:** fullName, email, password.
     - **Returns:**   user obj created in database, header set.
@@ -17,11 +17,18 @@
     - **Arguments:** email, password.
     - **Returns:**   user obj, header set.
 
+## Restaurants
 **`INDEX GET /restaurant`**
 **`CREATE GET /restaurant`**
 **`READ GET /restaurant/:id`**
 **`UPDATE PATCH /restaurant/:id`**
 **`DELETE DELETE /restaurant/:id`**
+## Locations
+**`INDEX GET /restaurant/:id/location`**
+**`CREATE GET /restaurant/:id/location`**
+**`READ GET /restaurant/:id/location/:id`**
+**`UPDATE PATCH /restaurant/:id/location/:id`**
+**`DELETE DELETE /restaurant/:id/location/:id`**
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
