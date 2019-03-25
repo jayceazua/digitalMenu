@@ -26,6 +26,7 @@ const signup = (req, res) => {
       maxAge: 900000,
       httpOnly: true
     });
+    res.status(200).send(user);
     res.redirect(301, '/');
   }).catch(err => res.json(err));
 }
@@ -38,8 +39,10 @@ const login = (req, res) => {
   const password = req.body.password;
 
   // Find this user name
-  User.findOne({email}, "username password")
+  User.findOne({email}, "fullname email position password")
     .then((user) => {
+      console.log("user:", user);
+      
       if (!user) {
         // User not found
         return res.status(401).json("Wrong Username or Password");
@@ -68,7 +71,8 @@ const login = (req, res) => {
           httpOnly: true
         });
 
-        res.json("Successfully logged in.")
+        res.status(200).send({user});
+        // res.json("Successfully logged in.")
 
       });
 
