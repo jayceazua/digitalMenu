@@ -3,9 +3,9 @@ const {Restaurant} = require('../models/restaurant');
 
 // INDEX
 const allRestaurants = (req, res) => {
-  Restaurant.find({}) // do not know if i need to populate the locations as well for the restaurants.
-  .then((restaurant) => {
-    res.json(restaurant);
+  Restaurant.find({}) // we could populate the locations associated
+  .then((restaurants) => {
+    res.json(restaurants);
   })
   .catch((err) => {
     res.status(404).json(err)
@@ -24,15 +24,33 @@ const addRestaurant = (req, res) => {
 };
 // READ
 const getRestaurant = (req, res) => {
-  
+    Restaurant.findById(req.params.id) // we could populate the locations associated
+    .then((_restaurant) => {
+      res.json(_restaurant)
+    })
+    .catch((err) => {
+      res.status(404).json(err)
+    })
 };
 // UPDATE
 const updateRestaurant = (req, res) => {
-  console.log(req.body);
+  Restaurant.findByIdAndUpdate(req.params.id, req.body)
+  .then((_restaurant) => {
+    res.json(_restaurant)
+  })
+  .catch((err) => {
+    res.status(404).json(err)
+  })
 };
 // DELETE
 const deleteRestaurant = (req, res) => {
-  console.log(req.body);
+  Restaurant.findByIdAndDelete(req.params.id)
+  .then((_restaurant) =>{
+    res.json(_restaurant)
+  })
+  .catch((err) => {
+    res.status(404).json(err)
+  })
 };
 
 module.exports = {
