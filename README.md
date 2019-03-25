@@ -17,6 +17,12 @@
     - **Arguments:** email, password.
     - **Returns:**   user obj, header set.
 
+**`INDEX GET /restaurant`**
+**`CREATE GET /restaurant`**
+**`READ GET /restaurant/:id`**
+**`UPDATE PATCH /restaurant/:id`**
+**`DELETE DELETE /restaurant/:id`**
+
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
  - As a user, I want to be able to login, in order to view my restaurant’s menu.
