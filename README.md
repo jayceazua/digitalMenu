@@ -1,6 +1,8 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
+**Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**
+
 ## API Endpoints
 
 **`POST /users/v0/signup`**
