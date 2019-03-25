@@ -1,14 +1,18 @@
+const {
+  allLocations,
+  addLocation,
+  getLocation,
+  updateLocation,
+  deleteLocation
+} = require('../controllers/locations');
+
 const locationsRouter = require('express').Router();
 
 locationsRouter.route('/location')
   // INDEX
-  .get((req, res) => {
-    res.send('GET All locations from the restaurant');
-  })
+  .get(allLocations)
   // CREATE
-  .post((req, res) => {
-    res.json('CREATE new location');
-  });
+  .post(addLocation);
 
 // NEW
 locationsRouter.get('/location/new', (req, res) => {
@@ -17,17 +21,11 @@ locationsRouter.get('/location/new', (req, res) => {
 
 locationsRouter.route('/location/:id')
   // SHOW
-  .get((req, res) => {
-    res.send('GET an individual location to view');
-  })
+  .get(getLocation)
   // UPDATE
-  .patch((req, res) => {
-    res.json('UPDATE a location');
-  })
+  .patch(updateLocation)
   // DELETE
-  .delete((req, res) => {
-    res.json('DELETE a location and it\'s items');
-  });
+  .delete(deleteLocation);
 
 // EDIT
 locationsRouter.get('/location/:id/edit', (req, res) => {

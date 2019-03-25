@@ -7,7 +7,8 @@ const LocationSchema = new Schema({
   // which restaurant does it belong to?
   restaurantChain: {
     type: Schema.Types.ObjectId,
-    ref: 'Restaurant'
+    ref: 'Restaurant',
+    required: true
   },
   // TODO: switch to yelp or google or facebook business api 
   restaurantLocation: {

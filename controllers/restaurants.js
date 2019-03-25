@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const {Restaurant} = require('../models/restaurant');
 
 // INDEX
@@ -16,7 +15,7 @@ const addRestaurant = (req, res) => {
   const restaurant = new Restaurant(req.body)
   restaurant.save()
   .then((_restaurant) => {
-    res.status(200).json("Successfully created.")
+    res.status(200).json(restaurant)
   })
   .catch((err) => {
     res.status(404).json(err)
