@@ -1,6 +1,18 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
+## API Endpoints
+
+**`POST /users/v0/signup`**
+    - **Arguments:** fullName, email, password.
+    - **Returns:**   user obj created in database, header set.
+**`POST /users/v0/login`**
+    - **Arguments:** email, password.
+    - **Returns:**   user obj, header set.
+**`DELETE /users/v0/logout`**
+    - **Arguments:** email, password.
+    - **Returns:**   user obj, header set.
+
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
  - As a user, I want to be able to login, in order to view my restaurant’s menu.
