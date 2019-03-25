@@ -5,7 +5,7 @@ const {Restaurant} = require('../models/restaurant');
 const allRestaurants = (req, res) => {
   Restaurant.find({}) // we could populate the locations associated
   .then((restaurants) => {
-    res.json(restaurants);
+    res.status(200).json(restaurants);
   })
   .catch((err) => {
     res.status(404).json(err)
@@ -16,7 +16,7 @@ const addRestaurant = (req, res) => {
   const restaurant = new Restaurant(req.body)
   restaurant.save()
   .then((_restaurant) => {
-    res.json(_restaurant)
+    res.status(200).json("Successfully created.")
   })
   .catch((err) => {
     res.status(404).json(err)
@@ -26,7 +26,7 @@ const addRestaurant = (req, res) => {
 const getRestaurant = (req, res) => {
     Restaurant.findById(req.params.id) // we could populate the locations associated
     .then((_restaurant) => {
-      res.json(_restaurant)
+      res.status(200).json(_restaurant)
     })
     .catch((err) => {
       res.status(404).json(err)
@@ -36,7 +36,7 @@ const getRestaurant = (req, res) => {
 const updateRestaurant = (req, res) => {
   Restaurant.findByIdAndUpdate(req.params.id, req.body)
   .then((_restaurant) => {
-    res.json(_restaurant)
+    res.status(200).json("Successfully updated.");
   })
   .catch((err) => {
     res.status(404).json(err)
@@ -46,7 +46,7 @@ const updateRestaurant = (req, res) => {
 const deleteRestaurant = (req, res) => {
   Restaurant.findByIdAndDelete(req.params.id)
   .then((_restaurant) =>{
-    res.json(_restaurant)
+    res.status(200).json("Successfully deleted.");
   })
   .catch((err) => {
     res.status(404).json(err)
