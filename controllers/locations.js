@@ -30,7 +30,7 @@ const addLocation = async (req, res) => {
     await location.save();
     _restaurant.locations.push(location._id);
     _restaurant.save();
-    return res.json({location}).status(200);
+    return res.json(location).status(200);
   } catch (err) {
     console.log(err);
     return res.send(err).status(404);
