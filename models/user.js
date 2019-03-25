@@ -31,6 +31,8 @@ const UserSchema = new Schema({
       }
     },
 
+    number: String,
+    position: String,
     password: {
       type: String,
       required: [true, 'Password Required'],
