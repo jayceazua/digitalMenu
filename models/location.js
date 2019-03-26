@@ -11,11 +11,12 @@ const LocationSchema = new Schema({
     required: true
   },
   // TODO: switch to yelp or google or facebook business api 
-  country: String,
-  stateOrProvince: String,
-  city: String,
-  zipOrPostalCode: String,
-  streetAddress: String,
+  restaurantLocation: {
+      type: String,
+      index: true,
+      unique: true,
+      required: true
+    },
     // phone
     restaurantPhone: {
       type: String,
