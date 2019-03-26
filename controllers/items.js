@@ -1,9 +1,8 @@
 const {Item} = require('../models/item');
 const {Locations} = require('../models/location')
-const allItems, getItem, addItem, updateItem, deleteItem
 
 // INDEX
-allItems = (req, res) => {
+const allItems = (req, res) => {
   Item.find().then((items) => {
     res.status(200).json(items)
   }).catch((err) => {
@@ -11,7 +10,7 @@ allItems = (req, res) => {
   })
 }
 // CREATE
-addItem = (req, res) => {
+const addItem = (req, res) => {
   // need to research on how to do this cleaner
   req.body.location = mongoose.Types.ObjectId(req.locationId)
   const _location = await Location.findById(req.locationId);
@@ -26,7 +25,7 @@ addItem = (req, res) => {
   }
 }
 // READ
-getItem = (req, res) => {
+const getItem = (req, res) => {
   Item.findById(req.params.id)
   .then((item) => {
     res.status(200).json(item)
@@ -36,7 +35,7 @@ getItem = (req, res) => {
   })
 }
 // UPDATE
-updateItem = (req, res) => {
+const updateItem = (req, res) => {
   Item.findByIdAndUpdate(req.params.id, req.body)
   .then((item) => {
     res.status(200).json(item)
@@ -46,7 +45,7 @@ updateItem = (req, res) => {
   })
 }
 // DELETE
-deleteItem = async (req, res) => {
+const deleteItem = async (req, res) => {
   Item.findByIdAndDelete(req.params.id)
   .then((item) => {
   // delete from the parent schema
