@@ -13,7 +13,7 @@ const allLocations = (req, res) => {
 };
 
 const getLocation = (req, res) => {
-  Location.findById(req.params.id).populate('Item')
+  Location.findById(req.params.id)
   .then((_location) => {
     res.status(200).json(_location);
   })
