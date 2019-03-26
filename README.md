@@ -19,16 +19,37 @@
 
 ## Restaurants
 **`INDEX GET /restaurant`**
+    - **Arguments:** 
+    - **Returns:**   
 **`CREATE GET /restaurant`**
+    - **Arguments:** 
+    - **Returns:**   
 **`READ GET /restaurant/:id`**
+    - **Arguments:** 
+    - **Returns:**   
 **`UPDATE PATCH /restaurant/:id`**
+    - **Arguments:**
+    - **Returns:**   
 **`DELETE DELETE /restaurant/:id`**
+    - **Arguments:** 
+    - **Returns:**   
+    
 ## Locations
 **`INDEX GET /restaurant/:id/location`**
+    - **Arguments:** 
+    - **Returns:**   
 **`CREATE GET /restaurant/:id/location`**
+    - **Arguments:** 
+    - **Returns:**   
 **`READ GET /restaurant/:id/location/:id`**
+    - **Arguments:** 
+    - **Returns:**   
 **`UPDATE PATCH /restaurant/:id/location/:id`**
+    - **Arguments:** 
+    - **Returns:**   
 **`DELETE DELETE /restaurant/:id/location/:id`**
+    - **Arguments:** 
+    - **Returns:**   
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
