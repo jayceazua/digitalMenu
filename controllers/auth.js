@@ -19,7 +19,8 @@ const signup = (req, res) => {
     return user.generateAuthToken();
   }).then((token) => {
     res.header('x-auth', token).send(user)
-  }).catch((e) => {
+  })
+  .catch((e) => {
     res.status(400).send(e)
   });
 }
@@ -29,23 +30,27 @@ const signup = (req, res) => {
 const login = (req, res) => {
   let body = _.pick(req.body, ['email', 'password']);
 
-  User.findByCredentials(body.email, body.password).then((user) => {
+  User.findByCredentials(body.email, body.password)
+  .then((user) => {
     return user.generateAuthToken().then((token) => {
       res.header('x-auth', token).send(user);
     });
-  }).catch((err) => {
-    res.status(400).send()
+  })
+  .catch((e) => {
+    res.status(400).send(e)
   });
 };
 
 //LOGOUT
 /** have users logout <- don't worry about this */
 const logout = (req, res) => {
-  req.user.removeToken(req.token).then(() => {
+  req.user.removeToken(req.token)
+  .then(() => {
     res.status(200).send()
-  }, () => {
-    res.status(400).send()
   })
+  .catch((e) => {
+    res.status(400).send(e)
+  });
 };
 
 module.exports = {
