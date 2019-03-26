@@ -18,7 +18,7 @@ const auth = (req, res, next) => {
         next();
       })
       .catch((err) => {
-        res.status(401).send("Cock sucker");
+        res.status(401).send();
       })
   }
 }
