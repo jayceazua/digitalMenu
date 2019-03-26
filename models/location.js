@@ -17,17 +17,6 @@ const LocationSchema = new Schema({
       unique: true,
       required: true
     },
-    // phone
-    restaurantPhone: {
-      type: String,
-      trim: true,
-      index: true,
-      unique: true,
-      validate: {
-        validator: validator.isMobilePhone,
-        message: `{ VALUE } not a valid phone number`
-      }
-    },
     // menu/ items/ price adjustments
     items: [{
       type: Schema.Types.ObjectId,

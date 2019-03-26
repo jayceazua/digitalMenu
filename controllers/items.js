@@ -1,5 +1,6 @@
 const {Item} = require('../models/item');
 const {Location} = require('../models/location')
+const mongoose = require('mongoose');
 
 // INDEX
 const allItems = (req, res) => {
