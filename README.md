@@ -33,12 +33,12 @@
 **`DELETE DELETE /restaurant/:id`**
     - **Arguments:** 
     - **Returns:**   
-    
+
 ## Locations
 **`INDEX GET /restaurant/:id/location`**
     - **Arguments:** 
     - **Returns:**   
-**`CREATE GET /restaurant/:id/location`**
+**`CREATE POST /restaurant/:id/location`**
     - **Arguments:** 
     - **Returns:**   
 **`READ GET /restaurant/:id/location/:id`**
