@@ -85,7 +85,7 @@ const login = (req, res) => {
 /** have users logout <- don't worry about this */
 const logout = (req, res) => {
   res.clearCookie('nToken');
-  res.json("Successfully logged out.");
+  res.redirect('http://localhost:3000/')
 };
 
 module.exports = {
