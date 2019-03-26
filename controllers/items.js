@@ -1,5 +1,5 @@
 const {Item} = require('../models/item');
-const {Locations} = require('../models/location')
+const {Location} = require('../models/location')
 
 // INDEX
 const allItems = (req, res) => {
@@ -10,7 +10,7 @@ const allItems = (req, res) => {
   })
 }
 // CREATE
-const addItem = (req, res) => {
+const addItem = async (req, res) => {
   // need to research on how to do this cleaner
   req.body.location = mongoose.Types.ObjectId(req.locationId)
   const _location = await Location.findById(req.locationId);
