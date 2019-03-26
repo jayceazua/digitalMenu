@@ -29,6 +29,10 @@ const LocationSchema = new Schema({
       }
     },
     // menu/ items/ price adjustments
+    items: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Item',
+    }]
 }, {
   timestamps: true
 });

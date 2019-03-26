@@ -8,7 +8,7 @@ const allLocations = (req, res) => {
     res.status(200).json(locations);
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 
@@ -18,7 +18,7 @@ const getLocation = (req, res) => {
     res.status(200).json(_location);
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 
@@ -32,10 +32,8 @@ const addLocation = async (req, res) => {
     _restaurant.save();
     return res.json(location).status(200);
   } catch (err) {
-    console.log(err);
-    return res.send(err).status(404);
+    return res.send(err).status(500);
   }
-
 };
 
 const updateLocation = (req, res) => {
@@ -44,17 +42,18 @@ const updateLocation = (req, res) => {
     res.status(200).json("Succesfully updated.");
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 
 const deleteLocation = (req, res) => {
+  /** TODO: Need to remove from the parent schema */
   Location.findByIdAndDelete()
   .then((_location) => {
     res.status(200).json("Succesfully deleted.");
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 

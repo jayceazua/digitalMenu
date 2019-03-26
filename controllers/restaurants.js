@@ -7,7 +7,7 @@ const allRestaurants = (req, res) => {
     res.status(200).json(restaurants);
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 // CREATE
@@ -18,7 +18,7 @@ const addRestaurant = (req, res) => {
     res.status(200).json(restaurant)
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 // READ
@@ -28,7 +28,7 @@ const getRestaurant = (req, res) => {
       res.status(200).json(_restaurant)
     })
     .catch((err) => {
-      res.status(404).json(err)
+      res.status(500).json(err)
     })
 };
 // UPDATE
@@ -38,7 +38,7 @@ const updateRestaurant = (req, res) => {
     res.status(200).json("Successfully updated.");
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 // DELETE
@@ -48,7 +48,7 @@ const deleteRestaurant = (req, res) => {
     res.status(200).json("Successfully deleted.");
   })
   .catch((err) => {
-    res.status(404).json(err)
+    res.status(500).json(err)
   })
 };
 

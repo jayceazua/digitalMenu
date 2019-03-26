@@ -28,6 +28,7 @@ app.use(methodOverride((req, res) => {
 
 // routes
 app.get('/', (req, res) => {
+  // we could use this route as a place for documentation???
   res.json('Welcome to the digital menu backend api')
 });
 
