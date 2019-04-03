@@ -23,12 +23,14 @@ const addRestaurant = (req, res) => {
 };
 // READ
 const getRestaurant = (req, res) => {
-  // 
-
-
-    Restaurant.findById(req.params.id) // we could populate the locations associated
+  // 1. I need to call in the specifc restaurant
+  // 2. once it is found I need to populate the locations in a nested array of objects...
+  // once that is successful it redirect to /restaurants/:id with the data gathered
+  // skip over to controllers/locations.js 
+    Restaurant.findById(req.params.id).populate('Location') // we could populate the locations associated
     .then((_restaurant) => {
-      res.status(200).json(_restaurant)
+
+      res.status(200).json(_restaurant.locations)
     })
     .catch((err) => {
       res.status(500).json(err)
