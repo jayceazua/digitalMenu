@@ -23,6 +23,9 @@ const addRestaurant = (req, res) => {
 };
 // READ
 const getRestaurant = (req, res) => {
+  // 
+
+
     Restaurant.findById(req.params.id) // we could populate the locations associated
     .then((_restaurant) => {
       res.status(200).json(_restaurant)
