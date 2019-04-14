@@ -5,53 +5,53 @@
 
 ## API Endpoints
 ### User Profiles
-**`POST /users/v0/signup`**
+**`POST /users/v0/signup`** <br>
     - **Arguments:** fullName, email, password.
     - **Returns:**   user obj created in database, header set.
 
-**`POST /users/v0/login`**
+**`POST /users/v0/login`**  <br>
     - **Arguments:** email, password.
     - **Returns:**   user obj, header set.
     
-**`DELETE /users/v0/logout`**
+**`DELETE /users/v0/logout`**  <br>
     - **Arguments:** email, password.
     - **Returns:**   user obj, header set.
 
 ### Restaurants
-**`INDEX GET /restaurant`**
+**`INDEX GET /restaurant`**  <br>
     - **Arguments:** A user logged.
     - **Returns:** Returns all the restaurants from the specific user logged in. An array of restaurant objects.
-**`CREATE POST /restaurant`**
+**`CREATE POST /restaurant`**  <br>
     - **Arguments:** restaurantName
     - **Returns:** Returns a status of 200 if successfully created and 404 error code if there is an error.
-**`READ GET /restaurant/:id`**
+**`READ GET /restaurant/:id`**  <br>
     - **Arguments:** Restaurant Id in the uri params.
     - **Returns:** It will return the restaurant name and the list of objectIds of locations associated to that restaurant.  
-**`UPDATE PATCH /restaurant/:id`**
+**`UPDATE PATCH /restaurant/:id`**  <br>
     - **Arguments:** restaurantName
     - **Returns:** Status of 200 if successful or 404 if there is an error
-**`DELETE DELETE /restaurant/:id`**
+**`DELETE DELETE /restaurant/:id`**  <br>
     - **Arguments:** restaurant Id in the uri params.
     - **Returns:** Status of 200 if successful or 404 if there is an error
 
 ### Locations
-**`INDEX GET /restaurant/:id/location`**
+**`INDEX GET /restaurant/:id/location`**  <br>
     - **Arguments:** Restautant Id in the uri params.
     - **Returns:** An array of objects of the restaurants' locations
 
-**`CREATE POST /restaurant/:id/location`**
+**`CREATE POST /restaurant/:id/location`**  <br>
     - **Arguments:** location address, restaurant id in the params
     - **Returns:** status of 200 or error statrus 404
 
-**`READ GET /restaurant/:id/location/:id`**
+**`READ GET /restaurant/:id/location/:id`**  <br>
     - **Arguments:** restaurantId/locationId in the params
     - **Returns:** It will return the restaurantId, the location address, the list of objectIds of items associated to that location.
 
-**`UPDATE PATCH /restaurant/:id/location/:id`**
+**`UPDATE PATCH /restaurant/:id/location/:id`**  <br>
     - **Arguments:** restaurantId/locationId in the params, location address
     - **Returns:** status of 200 or error statrus 404  
 
-**`DELETE DELETE /restaurant/:id/location/:id`**
+**`DELETE DELETE /restaurant/:id/location/:id`**  <br>
     - **Arguments:** restaurantId/locationId in the params
     - **Returns:** status of 200 or error statrus 404 
 
