@@ -45,7 +45,7 @@
 
 **`READ GET /restaurant/:id/location/:id`**
     - **Arguments:** restaurantId/locationId in the params
-    - **Returns:**  
+    - **Returns:** It will return the restaurantId, the location address, the list of objectIds of items associated to that location.
 
 **`UPDATE PATCH /restaurant/:id/location/:id`**
     - **Arguments:** restaurantId/locationId in the params, location address
