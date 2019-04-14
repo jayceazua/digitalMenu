@@ -48,7 +48,7 @@
     - **Returns:**  
 
 **`UPDATE PATCH /restaurant/:id/location/:id`**
-    - **Arguments:** restaurantId/locationId in the params
+    - **Arguments:** restaurantId/locationId in the params, location address
     - **Returns:** status of 200 or error statrus 404  
 
 **`DELETE DELETE /restaurant/:id/location/:id`**
