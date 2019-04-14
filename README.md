@@ -4,7 +4,7 @@
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**
 
 ## API Endpoints
-## User Profiles
+### User Profiles
 **`POST /users/v0/signup`**
     - **Arguments:** fullName, email, password.
     - **Returns:**   user obj created in database, header set.
@@ -17,7 +17,7 @@
     - **Arguments:** email, password.
     - **Returns:**   user obj, header set.
 
-## Restaurants
+### Restaurants
 **`INDEX GET /restaurant`**
     - **Arguments:** A user logged.
     - **Returns:** Returns all the restaurants from the specific user logged in. An array of restaurant objects.
@@ -34,7 +34,7 @@
     - **Arguments:** restaurant Id in the uri params.
     - **Returns:** Status of 200 if successful or 404 if there is an error
 
-## Locations
+### Locations
 **`INDEX GET /restaurant/:id/location`**
     - **Arguments:** Restautant Id in the uri params.
     - **Returns:** An array of objects of the restaurants' locations
