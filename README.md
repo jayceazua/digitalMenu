@@ -19,37 +19,41 @@
 
 ## Restaurants
 **`INDEX GET /restaurant`**
-    - **Arguments:** 
-    - **Returns:**   
-**`CREATE GET /restaurant`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** A user logged.
+    - **Returns:** Returns all the restaurants from the specific user logged in. An array of restaurant objects.
+**`CREATE POST /restaurant`**
+    - **Arguments:** restaurantName
+    - **Returns:** Returns a status of 200 if successfully created and 404 error code if there is an error.
 **`READ GET /restaurant/:id`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** Restaurant Id in the uri params.
+    - **Returns:** It will return the restaurant name and the list of objectIds of locations associated to that restaurant.  
 **`UPDATE PATCH /restaurant/:id`**
-    - **Arguments:**
-    - **Returns:**   
+    - **Arguments:** restaurantName
+    - **Returns:** Status of 200 if successful or 404 if there is an error
 **`DELETE DELETE /restaurant/:id`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** restaurant Id in the uri params.
+    - **Returns:** Status of 200 if successful or 404 if there is an error
 
 ## Locations
 **`INDEX GET /restaurant/:id/location`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** Restautant Id in the uri params.
+    - **Returns:** An array of objects of the restaurants' locations
+
 **`CREATE POST /restaurant/:id/location`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** location address, restaurant id in the params
+    - **Returns:** status of 200 or error statrus 404
+
 **`READ GET /restaurant/:id/location/:id`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** restaurantId/locationId in the params
+    - **Returns:**  
+
 **`UPDATE PATCH /restaurant/:id/location/:id`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** restaurantId/locationId in the params
+    - **Returns:** status of 200 or error statrus 404  
+
 **`DELETE DELETE /restaurant/:id/location/:id`**
-    - **Arguments:** 
-    - **Returns:**   
+    - **Arguments:** restaurantId/locationId in the params
+    - **Returns:** status of 200 or error statrus 404 
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
