@@ -9,7 +9,7 @@
     - **Arguments:** fullName, email, password. <br>
     - **Returns:**   user obj created in database, header set.
  <br>
- 
+
 **`POST /users/v0/login`**  <br>
     - **Arguments:** email, password. <br>
     - **Returns:**   user obj, header set.
@@ -65,6 +65,24 @@
 **`DELETE DELETE /restaurant/:id/location/:id`**  <br>
     - **Arguments:** restaurantId/locationId in the params <br>
     - **Returns:** status of 200 or error statrus 404 
+
+### Items
+**`INDEX GET /restaurant/:id/location/:id/item`**
+    - **Arguments:**  restaurantId/locationId in the params <br>
+    - **Returns:** 
+**`CREATE POST /restaurant/:id/location/:id/item`**
+    - **Arguments:** restaurantId/locationId in the params, 
+    - **Returns:** 
+**`READ GET /restaurant/:id/location/:id/item/:id`**
+    - **Arguments:** restaurantId/locationId/itemId in the params
+    - **Returns:** 
+**`UPDATE PATCH /restaurant/:id/location/:id/item/:id`**
+    - **Arguments:** restaurantId/locationId/itemId in the params
+    - **Returns:** 
+**`DELETE DELETE /restaurant/:id/location/:id/item/:id`**
+    - **Arguments:** restaurantId/locationId/itemId in the params
+    - **Returns:** 
+
 
 ### User Narratives
  - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
