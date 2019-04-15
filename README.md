@@ -67,20 +67,20 @@
     - **Returns:** status of 200 or error statrus 404 
 
 ### Items
-**`INDEX GET /restaurant/:id/location/:id/item`**
+**`INDEX GET /restaurant/:id/location/:id/item`** <br>
     - **Arguments:**  restaurantId/locationId in the params <br>
     - **Returns:** 
-**`CREATE POST /restaurant/:id/location/:id/item`**
-    - **Arguments:** restaurantId/locationId in the params, 
+**`CREATE POST /restaurant/:id/location/:id/item`** <br>
+    - **Arguments:** restaurantId/locationId in the params, <br>
     - **Returns:** 
-**`READ GET /restaurant/:id/location/:id/item/:id`**
-    - **Arguments:** restaurantId/locationId/itemId in the params
+**`READ GET /restaurant/:id/location/:id/item/:id`** <br>
+    - **Arguments:** restaurantId/locationId/itemId in the params<br>
     - **Returns:** 
-**`UPDATE PATCH /restaurant/:id/location/:id/item/:id`**
-    - **Arguments:** restaurantId/locationId/itemId in the params
+**`UPDATE PATCH /restaurant/:id/location/:id/item/:id`** <br>
+    - **Arguments:** restaurantId/locationId/itemId in the params <br>
     - **Returns:** 
-**`DELETE DELETE /restaurant/:id/location/:id/item/:id`**
-    - **Arguments:** restaurantId/locationId/itemId in the params
+**`DELETE DELETE /restaurant/:id/location/:id/item/:id`** <br>
+    - **Arguments:** restaurantId/locationId/itemId in the params <br>
     - **Returns:** 
 
 
