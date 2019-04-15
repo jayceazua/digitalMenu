@@ -70,15 +70,19 @@
 **`INDEX GET /restaurant/:id/location/:id/item`** <br>
     - **Arguments:**  restaurantId/locationId in the params <br>
     - **Returns:** 
+    <br>
 **`CREATE POST /restaurant/:id/location/:id/item`** <br>
     - **Arguments:** restaurantId/locationId in the params, <br>
     - **Returns:** 
+    <br>
 **`READ GET /restaurant/:id/location/:id/item/:id`** <br>
-    - **Arguments:** restaurantId/locationId/itemId in the params<br>
+    - **Arguments:** restaurantId/locationId/itemId in the params <br>
     - **Returns:** 
+    <br>
 **`UPDATE PATCH /restaurant/:id/location/:id/item/:id`** <br>
     - **Arguments:** restaurantId/locationId/itemId in the params <br>
     - **Returns:** 
+    <br>
 **`DELETE DELETE /restaurant/:id/location/:id/item/:id`** <br>
     - **Arguments:** restaurantId/locationId/itemId in the params <br>
     - **Returns:** 
