@@ -17,6 +17,7 @@ services:
       - mongo
     depends_on:
       - mongo
+    env_file: .env
     environment:
       WAIT_HOSTS: mongo:27017
 
