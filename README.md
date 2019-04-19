@@ -1,8 +1,8 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
-**Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**
-** Digital Ocean Live Link Docker Container: http://142.93.170.178:3000/**
+**Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
+**Digital Ocean Live Link Docker Container: http://142.93.170.178:3000/**
 ## API Endpoints
 ### User Profiles
 **`POST /users/v0/signup`** <br>
