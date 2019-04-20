@@ -1,8 +1,21 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
+## Run Project locally
+- Clone repository
+- `cd` into root repo
+If you do not have docker installed please go install it.
+Clear your other containers:
+1. `docker-compose down`
+2. `docker-compose build --no-cache`
+3. `docker-compose up`
+If you run into the same issue Asim ran into like a dick head
+Run this command: `docker rm <container id>` of the container id hosting mongo
+then start from step one
+
+
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
-**Digital Ocean Live Link Docker Container: ~Coming soon~ *
+**Digital Ocean Live Link Docker Container: ~Coming soon~**
 ## API Endpoints
 ### User Profiles
 **`POST /users/v0/signup`** <br>
