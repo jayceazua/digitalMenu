@@ -37,7 +37,6 @@
     - **Arguments:** restaurantName  <br>
     - **Returns:** Status of 200 if successful or 404 if there is an error
      <br>
-
 **`DELETE DELETE /restaurant/:id`**  <br>
     - **Arguments:** restaurant Id in the uri params. <br>
     - **Returns:** Status of 200 if successful or 404 if there is an error
