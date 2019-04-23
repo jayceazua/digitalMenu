@@ -1,8 +1,18 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
+## Run Project locally
+- Clone repository
+- `cd` into root repo
+If you do not have docker installed please go install it.
+Clear your other containers:
+1. `$ docker-compose down && docker-compose build --no-cache`
+3. `$ docker-compose up`
+
+
+
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
-**Digital Ocean Live Link Docker Container: ~Coming soon~ *
+**Digital Ocean Live Link Docker Container: ~Coming soon~**
 ## API Endpoints
 ### User Profiles
 **`POST /users/v0/signup`** <br>
