@@ -2,12 +2,12 @@
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
 
 ## Run Project locally
-- Clone repository
-- `cd` into root repo
+1. Clone repository
+2. `cd` into root repo
 If you do not have docker installed please go install it.
 Clear your other containers:
-1. `$ docker-compose down && docker-compose build --no-cache`
-3. `$ docker-compose up`
+3. `$ docker-compose down && docker-compose build --no-cache`
+4. `$ docker-compose up`
 
 
 
