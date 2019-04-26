@@ -22,69 +22,6 @@ services:
     environment:
       WAIT_HOSTS: mongo:27017
 
-  # OPTIONAL: If you want to get emails from sentry include this docker container
-  smtp:
-    image: 'tianon/exim4:latest'
-    environment:
-      GMAIL_USER: ${GMAIL_USER}
-      GMAIL_PASSWORD: ${GMAIL_PASSWORD}
-
-  sentry-base:
-    image: 'sentry:latest'
-    container_name: sentry-base
-    restart: unless-stopped
-    depends_on:
-      - sentry-redis
-      - sentry-postgres
-    links:
-      - sentry-redis
-      - sentry-postgres
-    ports:
-      - 880:9000
-    env_file:
-      - sentry.env
-    volumes:
-      - /srv/sentry/sentry:/var/lib/sentry/files
-
-  sentry-cron:
-    image: 'sentry:latest'
-    restart: unless-stopped
-    depends_on:
-      - sentry-base
-    links:
-      - sentry-redis
-      - sentry-postgres
-    command: "sentry run cron"
-    env_file:
-      - sentry.env
-    volumes:
-      - /srv/sentry/sentry:/var/lib/sentry/files
-
-  sentry-worker:
-    image: 'sentry:latest'
-    depends_on:
-      - sentry-base
-    links:
-      - sentry-redis
-      - sentry-postgres
-    command: "sentry run worker"
-    env_file:
-      - sentry.env
-    volumes:
-      - /srv/sentry/sentry:/var/lib/sentry/files
-
-  sentry-redis:
-    image: 'redis:latest'
-
-  sentry-postgres:
-    image: 'postgres:latest'
-    environment:
-      POSTGRES_USER: sentry
-      POSTGRES_PASSWORD: sentry
-      POSTGRES_DB: sentry 
-    volumes:
-      - /srv/sentry/postgres:/var/lib/postgresql/data
-
 volumes:
   mongo_data:
 
