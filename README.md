@@ -11,6 +11,7 @@
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
 **Digital Ocean Live Link Docker Container: ~Coming soon~**
 ## API Endpoints
+Base URL: https://digitalmenu-intensive.herokuapp.com/
 ### User Profiles
 **`POST /users/v0/signup`** <br>
     - **Arguments:**  email, password. <br>
