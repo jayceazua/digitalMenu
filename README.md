@@ -13,7 +13,7 @@
 ## API Endpoints
 ### User Profiles
 **`POST /users/v0/signup`** <br>
-    - **Arguments:** fullName, email, password. <br>
+    - **Arguments:**  email, password. <br>
     - **Returns:**   user obj created in database, header set.
  <br>
 
