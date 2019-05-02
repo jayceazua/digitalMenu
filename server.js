@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000 // front end create-react-app runs on 3000
 // const Sentry = require('@sentry/node');
 // Sentry.init({ dsn: process.env.SENTRY_DSN });
-
+const logger = require('morgan');
 // database connection
 require('./database/mongodb');
 // setting up middleware
@@ -25,9 +25,7 @@ app.use(methodOverride((req, res) => {
     return method;
   };
 }));
-
-
-
+app.use(logger('dev'));
 // routes
 app.get('/', (req, res) => {
   // we could use this route as a place for documentation???
@@ -39,8 +37,15 @@ const restaurants = require('./routes/restaurants');
 app.use(auth)
 app.use(restaurants);
 
+// app.use('./middleware/log.js');
+const myLogger = function (req, res, next) {
+  console.log('LOGGED');
+  next();
+};
+
+app.use(myLogger);
 
 
 app.listen(port, () => {
-  console.log(`Server listening on port: ${port}`)
+  console.log(`Server listening on port: ${port}`)  
 });

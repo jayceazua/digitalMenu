@@ -32,6 +32,7 @@ const locations = require('./locations');
 
 restaurantsRouter.use('/restaurant/:id', (req, res, next) => {
   req.restaurantId = req.params.id;
+  console.log('restaurantId:', req.restaurantId);
   next();
 }, locations);
 

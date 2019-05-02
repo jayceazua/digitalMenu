@@ -36,6 +36,7 @@ locationsRouter.get('/location/:id/edit', (req, res) => {
 const items = require('./items');
 locationsRouter.use('/location/:id', (req, res, next) => {
   req.locationId = req.params.id;
+  console.log('locationId:', req.locationId);
   next();
 }, items);
 
