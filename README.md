@@ -4,6 +4,8 @@
 ## Run Project locally
 1. Clone repository
 2. `cd` into root repo
+3. Look into the `sample.env` file and change the values to your own secrets!
+4. Remove the `sample` on the filename so it is your own `.env` file. 
 3. `$ docker-compose up`
 
 
