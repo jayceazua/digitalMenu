@@ -8,6 +8,9 @@
 4. Remove the `sample` on the filename so it is your own `.env` file. 
 3. `$ docker-compose up`
 
+### Worse case
+ - if you have other docker project run `$ docker system prune` and press `y` to wipe everything out
+
 
 
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
