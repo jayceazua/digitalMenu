@@ -16,11 +16,6 @@ locationsRouter.route('/locations')
   // CREATE
   .post(addLocation);
 
-// NEW
-locationsRouter.get('/location/new', (req, res) => {
-  res.send('GET form to create a location');
-});
-
 locationsRouter.route('/location/:id')
   // SHOW
   .get(getLocation)
