@@ -1,3 +1,8 @@
+
+const Restaurant = require("../models/restaurant");
+const User = require("../models/user");
+const controller = require('../controllers/asims_restaurants');
+
 const restaurantsRouter = require('express').Router();
 const {
   allRestaurants,
@@ -6,26 +11,25 @@ const {
   updateRestaurant,
   deleteRestaurant
 } = require('../controllers/restaurants');
+const checkAuth = require('../middleware/authorization');
 
-restaurantsRouter.route('/restaurant')
-  // INDEX
-  .get(allRestaurants)
-  // CREATE
-  .post(addRestaurant);
+restaurantsRouter.post('/restaurant', checkAuth.authenticate, async (req, res) => {
+  restaurant = await controller.createRestaurant(req.user, req.body);
+  restaurant ? res.status(200).json(restaurant) : res.status(500).json('Something went wrong');
+});
 
-// NEW
-restaurantsRouter.get('/restaurant/new', /* frontend goes here */);
+restaurantsRouter.get('/restaurants', checkAuth.authenticate, async (req, res) => {
+  restaurants = await controller.getRestaurants(req.user._id);
+  restaurants ? res.status(200).json(restaurants)
+  :
+  res.status(500).json('Something went wrong. Please create  a restaurants.');
+});
 
 restaurantsRouter.route('/restaurant/:id')
-  // SHOW
   .get(getRestaurant)
-  // UPDATE
   .patch(updateRestaurant)
-  // DELETE
   .delete(deleteRestaurant);
 
-// EDIT
-restaurantsRouter.get('/restaurant/:id/edit', /** Frontend stuff goes here. */);
 
 // connecting to individual menus
 const locations = require('./locations');
