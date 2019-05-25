@@ -6,22 +6,19 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs')
 
 let UserSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 1,
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  email: { type: String, required: true, trim: true, minlength: 1,
     unique: true, // <- this is deprecated; hopefully mongoose updates this.
     validate: {
       validator: validator.isEmail,
-      message: `{VALUE} not a valid email`
+      message: `{VALUE} not a valid email` // when is this message displayed? (Asim)
     }
   },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6
-  },
+  phoneNumber: { type: String, required: true },
+  restaurants : [{ type: Schema.Types.ObjectId, ref: "Restaurant", required: false }],
+  password: { type: String, required: true, minlength: 6 },
+  // Really need to look into why these are being populated in the db...
   tokens: [{
     access: {
       type: String,
@@ -127,8 +124,4 @@ UserSchema.pre('save', function (next) {
   }
 });
 
-let User = mongoose.model('User', UserSchema);
-
-module.exports = {
-  User
-}
+module.exports = mongoose.model("User", UserSchema);
