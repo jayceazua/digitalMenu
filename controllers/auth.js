@@ -1,17 +1,10 @@
-/**
- * Created by: Jayce Azua
- * Date: 03/22/2019 
- */
-const _ = require('lodash');
-const {
-  User
-} = require('../models/user');
 
+const _ = require('lodash');
+const User = require('../models/user');
 // const { sendEmail } = require('../middleware/mailgun-config');
 
-// CREATE / SIGNUP
-/** Sign up users/ register them */
 const signup = (req, res) => {
+  // How do we check if a user already exists and return an error message? (Asim)
   let body = _.pick(req.body, ['email', 'password']);
   let user = new User(body);
 
@@ -23,10 +16,8 @@ const signup = (req, res) => {
   .catch((e) => {
     res.status(400).send(e)
   });
-}
+};
 
-// LOGIN
-/** have users login <- don't worry about this */
 const login = (req, res) => {
   let body = _.pick(req.body, ['email', 'password']);
 
@@ -41,8 +32,6 @@ const login = (req, res) => {
   });
 };
 
-//LOGOUT
-/** have users logout <- don't worry about this */
 const logout = (req, res) => {
   req.user.removeToken(req.token)
   .then(() => {
@@ -54,7 +43,5 @@ const logout = (req, res) => {
 };
 
 module.exports = {
-  signup,
-  login,
-  logout
-}
+  signup, login, logout
+};
