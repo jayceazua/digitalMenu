@@ -8,7 +8,7 @@ const {
 
 const locationsRouter = require('express').Router();
 
-locationsRouter.route('/location')
+locationsRouter.route('/locations')
   // INDEX
   .get(allLocations)
   // CREATE
