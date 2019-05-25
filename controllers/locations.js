@@ -10,16 +10,6 @@ const allLocations = async (req, res) => {
   res.status(500).json(err);
 };
 
-const getLocation = (req, res) => {
-  Location.findById(req.params.id)
-  .then((_location) => {
-    res.status(200).json(_location);
-  })
-  .catch((err) => {
-    res.status(500).json(err)
-  })
-};
-
 const addLocation = async (req, res) => {
   try {
     const restaurant = await Restaurant.findById(req.restaurantId);
@@ -33,6 +23,16 @@ const addLocation = async (req, res) => {
   }
 };
 
+const getLocation = (req, res) => {
+  Location.findById(req.params.id)
+  .then((_location) => {
+    res.status(200).json(_location);
+  })
+  .catch((err) => {
+    res.status(500).json(err)
+  })
+};
+
 const updateLocation = (req, res) => {
   Location.findByIdAndUpdate(req.params.id, req.body)
   .then((_location) => {
@@ -43,10 +43,11 @@ const updateLocation = (req, res) => {
   })
 };
 
-const deleteLocation = (req, res) => {
-  /** TODO: Need to remove from the parent schema */
-  Location.findByIdAndDelete()
-  .then((_location) => {
+const deleteLocation = async (req, res) => {
+  restaurant = await Restaurant.findById(req.restaurantId);
+  restaurant.locations.remove(req.params.id);
+  Location.findByIdAndDelete(req.params.id)
+.then(() => {
     res.status(200).json("Succesfully deleted.");
   })
   .catch((err) => {
