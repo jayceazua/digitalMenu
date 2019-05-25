@@ -1,11 +1,8 @@
+
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ItemSchema = new Schema({
-  location: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Location'
-  }],
   itemName: {
     type: String,
     required: true
@@ -23,7 +20,4 @@ const ItemSchema = new Schema({
 });
 
 
-const Item = mongoose.model('Item', ItemSchema);
-module.exports = {
-  Item
-};
+module.exports = mongoose.model("Item", ItemSchema);
