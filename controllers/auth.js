@@ -5,8 +5,7 @@ const User = require('../models/user');
 
 const signup = (req, res) => {
   // How do we check if a user already exists and return an error message? (Asim)
-  let body = _.pick(req.body, ['email', 'password']);
-  let user = new User(body);
+  let user = new User(req.body);
 
   user.save().then(() => {
     return user.generateAuthToken();
