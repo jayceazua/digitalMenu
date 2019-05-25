@@ -1,8 +1,6 @@
-const { Location } = require('../models/location');
+const Location = require('../models/location');
 const Restaurant = require('../models/restaurant')
-const mongoose = require('mongoose');
 
-// Asim - gets all locations of a restaurant.
 const allLocations = async (req, res) => {
   const locations = await Restaurant.findById(req.restaurantId).populate('locations');
   console.log('locations:', locations.locations);  
@@ -23,17 +21,15 @@ const getLocation = (req, res) => {
 };
 
 const addLocation = async (req, res) => {
-  console.log('req.body:', req.body);
-  req.body.restaurantChain = mongoose.Types.ObjectId(req.restaurantId) //TODO: what is this line doing?
-  const _restaurant = await Restaurant.findById(req.restaurantId);
   try {
+    const restaurant = await Restaurant.findById(req.restaurantId);
     const location = await new Location(req.body)
     await location.save();
-    _restaurant.locations.push(location._id);
-    _restaurant.save();
+    restaurant.locations.push(location._id);
+    restaurant.save();
     return res.status(200).json(location);
-  } catch (err) {
-    return res.send(err).status(500);
+  } catch {
+    return res.status(500).send(err);
   }
 };
 

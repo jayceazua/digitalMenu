@@ -11,6 +11,8 @@ const locationsRouter = require('express').Router();
 locationsRouter.route('/locations')
   // INDEX
   .get(allLocations)
+
+  locationsRouter.route('/location')
   // CREATE
   .post(addLocation);
 
