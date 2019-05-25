@@ -4,7 +4,7 @@ const cors = require('cors');
 const express = require("express");
 const methodOverride = require('method-override');
 const app = express();
-const port = process.env.PORT || 3000 // front end create-react-app runs on 3000
+const port = process.env.PORT || 5000;
 // const Sentry = require('@sentry/node');
 // Sentry.init({ dsn: process.env.SENTRY_DSN });
 const logger = require('morgan');
@@ -26,9 +26,17 @@ app.use(methodOverride((req, res) => {
   };
 }));
 app.use(logger('dev'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+app.use(cors({
+  credentials: true,
+}));
 // routes
 app.get('/', (req, res) => {
-  // we could use this route as a place for documentation???
+  // we could use this route as a place for documentation.
   res.json('Welcome to the digital menu backend api')
 });
 
@@ -36,15 +44,6 @@ const auth = require('./routes/auth');
 const restaurants = require('./routes/restaurants');
 app.use(auth)
 app.use(restaurants);
-
-// app.use('./middleware/log.js');
-const myLogger = function (req, res, next) {
-  console.log('LOGGED');
-  next();
-};
-
-app.use(myLogger);
-
 
 app.listen(port, () => {
   console.log(`Server listening on port: ${port}`)  
