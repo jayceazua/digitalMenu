@@ -24,11 +24,6 @@ locationsRouter.route('/location/:id')
   // DELETE
   .delete(deleteLocation);
 
-// EDIT
-locationsRouter.get('/location/:id/edit', (req, res) => {
-  res.send('GET form to edit');
-});
-
 // connecting to individual items
 const items = require('./items');
 locationsRouter.use('/location/:id', (req, res, next) => {
