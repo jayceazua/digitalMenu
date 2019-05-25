@@ -20,7 +20,6 @@ function getRestaurants(userId) {
         resolve(restaurants.restaurants)
         :
         reject('No Restaurants Found.');
-        
     });
 };
 

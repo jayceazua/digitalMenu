@@ -6,13 +6,11 @@
 2. `cd` into root repo
 3. `$ docker-compose up`
 
-
-
 **Front end React app: https://github.com/AwesomeZaidi/Digital-Menu-Frontend**<br/>
 **Digital Ocean Live Link Docker Container: ~Coming soon~**
 ## API Endpoints
 ### User Profiles
-**`POST /users/v0/signup`** <br>
+**`POST `/users/v0/signup** <br>
     - **Arguments:** fullName, email, password. <br>
     - **Returns:**   user obj created in database, header set.
  <br>
@@ -47,7 +45,7 @@
 **`DELETE DELETE /restaurant/:id`**  <br>
     - **Arguments:** restaurant Id in the uri params. <br>
     - **Returns:** Status of 200 if successful or 404 if there is an error
- <br>
+
 ### Locations
 **`INDEX GET /restaurant/:id/location`**  <br>
     - **Arguments:** Restautant Id in the uri params.  <br>
