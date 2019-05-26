@@ -5,18 +5,18 @@ const {
   updateLocation,
   deleteLocation
 } = require('../controllers/locations');
-
 const locationsRouter = require('express').Router();
+const checkAuth = require('../middleware/authorization');
 
-locationsRouter.route('/locations')
-  // INDEX
-  .get(allLocations)
+locationsRouter.get('/locations', checkAuth.authenticate, async (req, res) => {
+  allLocations(req, res);
+});
 
-  locationsRouter.route('/location')
-  // CREATE
-  .post(addLocation);
+locationsRouter.post('/location', checkAuth.authenticate, async (req, res) => {
+  addLocation(req, res);
+});
 
-locationsRouter.route('/location/:id')
+locationsRouter.route('/location/:id', checkAuth.authenticate)
   // SHOW
   .get(getLocation)
   // UPDATE

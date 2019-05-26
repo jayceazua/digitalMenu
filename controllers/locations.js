@@ -7,20 +7,32 @@ const allLocations = async (req, res) => {
   locations ?
     res.status(200).json(locations.locations)
   :
-  res.status(500).json(err);
+  res.status(500).json('Something went wrong.');
 };
 
 const addLocation = async (req, res) => {
-  try {
-    const restaurant = await Restaurant.findById(req.restaurantId);
-    const location = await new Location(req.body)
-    await location.save();
-    restaurant.locations.push(location._id);
-    restaurant.save();
-    return res.status(200).json(location);
-  } catch {
-    return res.status(500).send(err);
-  }
+    Restaurant.findById(req.restaurantId).then((restaurant) => {
+      const location = new Location(req.body);
+      restaurant.locations ?
+        restaurant.locations.push(location._id)
+      :
+        restaurant.locations = [location._id];
+      
+      restaurant.save().then(() => {
+        location.save().then(() => {
+          return res.status(200).json(location);
+        }).catch((err) => {
+          console.log('err:', err);      
+          return res.status(500).send('Something went wrong.');
+        })
+      }).catch((err) => {
+        console.log('err:', err);      
+        return res.status(500).send('Something went wrong.');
+      })
+    }).catch((err) => {
+      console.log('err:', err);      
+      return res.status(500).send('Something went wrong.');
+    })
 };
 
 const getLocation = (req, res) => {
