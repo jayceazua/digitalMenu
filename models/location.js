@@ -9,7 +9,6 @@ const LocationSchema = new Schema({
 	city: String,
 	zipcode: String,
 	locationPhoneNumber: String,
-	locationNumber: { type: String, index: true, unique: true },
 	items: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
 }, {
 	timestamps: true
