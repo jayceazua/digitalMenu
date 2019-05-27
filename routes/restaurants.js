@@ -12,6 +12,7 @@ const {
 const checkAuth = require('../middleware/authorization');
 
 restaurantsRouter.post('/restaurant', checkAuth.authenticate, async (req, res) => {
+  console.log('req.body:', req.body);  
   restaurant = await controller.createRestaurant(req.user, req.body);
   restaurant ?
     res.status(200).json(restaurant)
@@ -27,10 +28,17 @@ restaurantsRouter.get('/restaurants', checkAuth.authenticate, async (req, res) =
     res.status(500).json('Something went wrong.');
 });
 
-restaurantsRouter.route('/restaurant/:id')
-  .get(getRestaurant)
-  .patch(updateRestaurant)
-  .delete(deleteRestaurant);
+restaurantsRouter.get('/restaurant/:id', checkAuth.authenticate, (req, res) => {
+  getRestaurant(req, res);
+});
+
+restaurantsRouter.patch('/restaurant/:id', checkAuth.authenticate, (req, res) => {
+  updateRestaurant(req, res);
+});
+
+restaurantsRouter.delete('/restaurant/:id', checkAuth.authenticate, (req, res) => {
+  deleteRestaurant(req, res);
+});
 
 
 // connecting to individual menus
