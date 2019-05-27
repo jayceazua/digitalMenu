@@ -12,8 +12,7 @@ const {
 // CREATE / SIGNUP
 /** Sign up users/ register them */
 const signup = (req, res) => {
-  let body = _.pick(req.body, ['email', 'password']);
-  let user = new User(body);
+  let user = new User(req.body);
 
   user.save().then(() => {
     return user.generateAuthToken();

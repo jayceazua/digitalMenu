@@ -6,26 +6,27 @@ const {
   updateRestaurant,
   deleteRestaurant
 } = require('../controllers/restaurants');
+const {
+  authenticate
+} = require('../middleware/authorization');
 
 restaurantsRouter.route('/restaurant')
   // INDEX
-  .get(allRestaurants)
+  .get(authenticate, allRestaurants)
   // CREATE
-  .post(addRestaurant);
+  .post(authenticate, addRestaurant);
 
 // NEW
 restaurantsRouter.get('/restaurant/new', /* frontend goes here */);
 
 restaurantsRouter.route('/restaurant/:id')
   // SHOW
-  .get(getRestaurant)
+  .get(authenticate, getRestaurant)
   // UPDATE
-  .patch(updateRestaurant)
+  .patch(authenticate, updateRestaurant)
   // DELETE
-  .delete(deleteRestaurant);
+  .delete(authenticate, deleteRestaurant);
 
-// EDIT
-restaurantsRouter.get('/restaurant/:id/edit', /** Frontend stuff goes here. */);
 
 // connecting to individual menus
 const locations = require('./locations');
