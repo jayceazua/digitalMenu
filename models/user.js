@@ -16,6 +16,7 @@ let UserSchema = new Schema({
     }
   },
   phoneNumber: { type: String, required: true },
+  position: String,
   restaurants : [{ type: Schema.Types.ObjectId, ref: "Restaurant" }],
   password: { type: String, required: true, minlength: 6 },
   // Really need to look into why these are being populated in the db...
