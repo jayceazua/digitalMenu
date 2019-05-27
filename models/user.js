@@ -37,6 +37,8 @@ let UserSchema = new Schema({
       required: true
     }
   }]
+}, {
+  timestamps: true
 });
 
 // overriding method to show limited amount of data
