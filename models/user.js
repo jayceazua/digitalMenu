@@ -6,6 +6,8 @@ const _ = require('lodash');
 const bcrypt = require('bcryptjs')
 
 let UserSchema = new Schema({
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
   email: {
     type: String,
     required: true,
@@ -17,6 +19,9 @@ let UserSchema = new Schema({
       message: `{VALUE} not a valid email`
     }
   },
+  phoneNumber: { type: String, required: true },
+  position: { type: String },
+  restaurants : [{ type: Schema.Types.ObjectId, ref: "Restaurant" }],
   password: {
     type: String,
     required: true,
