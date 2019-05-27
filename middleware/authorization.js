@@ -1,21 +1,18 @@
 const {
   User
 } = require('../models/user');
-// middle for authorization
+const jwt = require('jsonwebtoken');
+
 const authenticate = (req, res, next) => {
-  let token = req.header('x-auth');
-  User.findByToken(token)
-    .then((user) => {
-      if (!user) {
-        return Promise.reject();
-      }
-      req.user = user;
-      req.token = token;
-      next();
-    })
-    .catch((err) => {
-      res.status(401).send();
-    });
+  if (req.cookies && req.cookies.nToken) {
+      const uid = jwt.decode(req.cookies.nToken, process.env.SECRET)._id;
+      User.findById(uid).then(user => { 
+          req.user = user;
+          next();
+      });
+  } else {
+    return res.status(401).send("User not logged in");
+  };
 }
 
 module.exports = {

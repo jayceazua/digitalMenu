@@ -1,8 +1,5 @@
 const router = require('express').Router();
 const {
-  authenticate
-} = require('../middleware/authorization');
-const {
   signup,
   login,
   logout
@@ -10,6 +7,6 @@ const {
 
 router.post('/users/v0/signup', signup);
 router.post('/users/v0/login', login);
-router.delete('/users/v0/logout', authenticate, logout);
+router.delete('/users/v0/logout', logout);
 
 module.exports = router;
