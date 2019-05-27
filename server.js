@@ -4,7 +4,7 @@ const cors = require('cors');
 const express = require("express");
 const methodOverride = require('method-override');
 const app = express();
-const port = process.env.PORT || 3000 // front end create-react-app runs on 3000
+const port = process.env.PORT || 5000
 // const Sentry = require('@sentry/node');
 // Sentry.init({ dsn: process.env.SENTRY_DSN });
 
