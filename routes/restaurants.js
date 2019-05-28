@@ -10,14 +10,9 @@ const {
   authenticate
 } = require('../middleware/authorization');
 
-restaurantsRouter.route('/restaurant')
-  // INDEX
-  .get(authenticate, allRestaurants)
-  // CREATE
-  .post(authenticate, addRestaurant);
+restaurantsRouter.post('/restaurant', authenticate, addRestaurant);
 
-// NEW
-restaurantsRouter.get('/restaurant/new', /* frontend goes here */);
+restaurantsRouter.get('/restaurants', authenticate, allRestaurants);
 
 restaurantsRouter.route('/restaurant/:id')
   // SHOW
@@ -26,7 +21,6 @@ restaurantsRouter.route('/restaurant/:id')
   .patch(authenticate, updateRestaurant)
   // DELETE
   .delete(authenticate, deleteRestaurant);
-
 
 // connecting to individual menus
 const locations = require('./locations');

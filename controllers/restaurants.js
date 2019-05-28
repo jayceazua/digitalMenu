@@ -1,4 +1,4 @@
-const {Restaurant} = require('../models/restaurant');
+const { Restaurant } = require('../models/restaurant');
 
 const allRestaurants = async (req, res) => {
     const restaurants = await User.findById(userId).populate('restaurants')
@@ -10,20 +10,20 @@ const allRestaurants = async (req, res) => {
 
 const addRestaurant = async (req, res) => {
   try {
-    const restaurant = new Restaurant(restaurantData);
-    user.restaurants ?
-      user.restaurants.push(restaurant)
+    const restaurant = new Restaurant(req.body);
+    req.user.restaurants ?
+      req.user.restaurants.push(restaurant)
     :
       user.restaurants = [restaurant];
     await restaurant.save();
-    await user.save();
+    await req.user.save();
     // SendGrid.sendWebsiteRequestEmail(user);
     res.status(200).json(restaurant)
   } catch(err) {
     res.status(500).json(err);
   }
 };
-// READ
+
 const getRestaurant = async (req, res) => {
   restaurant = await Restaurant.findById(req.params.id);
   restaurant ? 
@@ -31,7 +31,7 @@ const getRestaurant = async (req, res) => {
   :
     res.status(500).json('Something went wrong.')
 };
-// UPDATE
+
 const updateRestaurant = (req, res) => {
   Restaurant.findByIdAndUpdate(req.params.id, req.body)
   .then((_restaurant) => {
@@ -41,7 +41,7 @@ const updateRestaurant = (req, res) => {
     res.status(500).json(err)
   })
 };
-// DELETE
+
 const deleteRestaurant = async (req, res) => {
   // TEST THIS.
   try {
