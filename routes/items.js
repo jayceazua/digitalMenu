@@ -6,19 +6,20 @@ const {
   updateItem,
   deleteItem
 } = require('../controllers/items');
+const { authenticate } = require('../middleware/authorization');
 
 itemsRouter.route('/item')
   // INDEX
-  .get(allItems)
+  .get(authenticate, allItems)
   // CREATE
-  .post(addItem);
+  .post(authenticate, addItem);
 
 itemsRouter.route('/item/:id')
   // READ
-  .get(getItem)
+  .get(authenticate, getItem)
   // UPDATE
-  .patch(updateItem)
+  .patch(authenticate, updateItem)
   // DELETE
-  .delete(deleteItem);
+  .delete(authenticate, deleteItem);
 
 module.exports = itemsRouter
