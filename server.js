@@ -14,12 +14,10 @@ const port = process.env.PORT || 5000
 // database connection
 require('./database/mongodb');
 
-// setting up middleware
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // <- maybe add this for testing
@@ -33,6 +31,8 @@ app.use(methodOverride((req, res) => {
     return method;
   };
 }));
+
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 // routes
 app.get('/', (req, res) => {
