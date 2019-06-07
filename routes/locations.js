@@ -11,11 +11,9 @@ const {
 
 const locationsRouter = require('express').Router();
 
-locationsRouter.route('/location')
-  // INDEX
-  .get(authenticate, allLocations)
-  // CREATE
-  .post(authenticate, addLocation);
+locationsRouter.get('/locations', allLocations);
+
+locationsRouter.post('/location', authenticate, addLocation);
 
 locationsRouter.route('/location/:id')
   // SHOW

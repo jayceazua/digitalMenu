@@ -1,9 +1,10 @@
 const { Restaurant } = require('../models/restaurant');
+const { User } = require('../models/user'); 
 
 const allRestaurants = async (req, res) => {
-    const restaurants = await User.findById(userId).populate('restaurants')
+    const restaurants = await User.findById(req.user._id).populate('restaurants')
     restaurants ? 
-      res.status(200).json(restaurants)
+      res.status(200).json(restaurants.restaurants)
     :
       res.status(500).json('Something went wrong.');
 };

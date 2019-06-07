@@ -55,7 +55,7 @@ Base URL: https://digitalmenu-intensive.herokuapp.com/
     - **Returns:** Status of 200 if successful or 404 if there is an error
  <br>
 ### Locations
-**`INDEX GET /restaurant/:id/location`**  <br>
+**`INDEX GET /restaurant/:id/locations`**  <br>
     - **Arguments:** Restautant Id in the uri params.  <br>
     - **Returns:** An array of objects of the restaurants' locations
  <br>

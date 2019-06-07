@@ -8,11 +8,9 @@ const {
 } = require('../controllers/items');
 const { authenticate } = require('../middleware/authorization');
 
-itemsRouter.route('/item')
-  // INDEX
-  .get(authenticate, allItems)
-  // CREATE
-  .post(authenticate, addItem);
+itemsRouter.get('/items', authenticate, allItems)
+
+itemsRouter.post('/item', authenticate, addItem);
 
 itemsRouter.route('/item/:id')
   // READ

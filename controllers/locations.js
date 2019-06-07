@@ -1,6 +1,6 @@
 const { Location } = require('../models/location');
-const { Restaurant } = require('../models/restaurant')
-const mongoose = require('mongoose');
+const { Restaurant } = require('../models/restaurant');
+const _ = require('lodash');
 
 const allLocations = async (req, res) => {
   const locations = await Restaurant.findById(req.restaurantId).populate('locations'); 
@@ -19,11 +19,12 @@ const getLocation = async (req, res) => {
   }
 };
 
-const addLocation = async (req, res) => {
+const addLocation = async (req, res) => { 
   try {
+    const body = _.pick(req.body, ['locationName', 'streetAddress', 'state', 'city', 'zipcode', 'locationPhoneNumber']);  
     const restaurant = await Restaurant.findById(req.restaurantId);
-    const location = await new Location(req.body);
-    await location.save();
+    const location = await new Location(body);
+    await location.save();  
     restaurant.locations.push(location._id);
     await restaurant.save();
     return res.status(200).json(location);
