@@ -1,5 +1,6 @@
 # DigitalMenu
 <img style="height: 120px; width: 120px;" src="./assets/readme/DigiMenu.png"/>
+Stack: Node, Express, Mongoose switching to Django, Python, Echo, and Go
 
 ## Run Project locally
 1. Clone repository
@@ -7,6 +8,9 @@
 3. Look into the `sample.env` file and change the values to your own secrets!
 4. Remove the `sample` on the filename so it is your own `.env` file. 
 3. `$ docker-compose up`
+
+### Worse case
+ - if you have other docker project run `$ docker system prune` and press `y` to wipe everything out
 
 
 
