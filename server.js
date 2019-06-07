@@ -32,7 +32,7 @@ app.use(methodOverride((req, res) => {
   };
 }));
 
-app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use(cors({credentials: true, origin: 'https://digitalmenuapp.herokuapp.com/'}));
 
 // routes
 app.get('/', (req, res) => {
