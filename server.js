@@ -32,6 +32,7 @@ app.use(methodOverride((req, res) => {
   };
 }));
 
+
 app.use(cors({credentials: true, origin: 'https://digitalmenuapp.herokuapp.com/'}));
 
 // routes
