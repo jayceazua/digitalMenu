@@ -24,10 +24,7 @@ const signup = async (req, res) => {
       expiresIn: "60 days"
     });
 
-    res.cookie('dmToken', token, {
-      maxAge: 600000,
-      httpOnly: true
-    });
+    res.cookie('dmToken', token);
     console.log("New user saved:", )
     return res.status(200).json({
       token
