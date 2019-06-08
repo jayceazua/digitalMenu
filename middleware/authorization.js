@@ -5,8 +5,9 @@ const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
   let token = req.headers.cookie;
+
   if (!token) {
-    return res.status(401).send("I am trying!!!");
+    return res.status(401).send("I am trying:", req);
   } else {
     let cookieToken = req.headers.cookie.split("=")[1]
     // verify a token symmetric - synchronous
@@ -18,7 +19,7 @@ const authenticate = (req, res, next) => {
           console.log("User was not found but the token is:", token)
           return Promise.reject()
         }
-        
+
         console.log("Authorized user!");
         next();
       })
