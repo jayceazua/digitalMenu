@@ -20,7 +20,7 @@ const signup = (req, res) => {
 
   }).then((token) => {
     // send email
-    // sendEmail(user)
+    sendEmail(user)
 
     res.header('x-token', token).send(user)
 
