@@ -58,7 +58,7 @@ const authenticate = (req, res, next) => {
 // in the payload get the user id and findById
 // if no user is found return error kick the mf out
 // else return success to the next
-}
+// }
 
 
 
