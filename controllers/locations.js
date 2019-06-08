@@ -8,9 +8,10 @@ const _ = require('lodash');
 
 const allLocations = async (req, res) => {
   try {
-    console.log(req.restaurantId)
-  } catch {
-    res.status(500).json('Something went wrong.');
+    const locations = await Restaurant.findById(req.restaurantId).populate('locations');
+    res.status(200).json(locations.locations)
+  } catch (error) {
+    res.status(500).json(error);
   }
   // const locations = await Restaurant.findById(req.restaurantId).populate('locations'); 
   // locations ?
