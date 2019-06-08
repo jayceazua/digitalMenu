@@ -15,6 +15,7 @@ const port = process.env.PORT || 5000
 require('./database/mongodb');
 
 app.use(cookieParser());
+app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -35,30 +36,6 @@ app.use(methodOverride((req, res) => {
     return method;
   };
 }));
-
-
-// Set up a whitelist and check against it:
-// const whitelist = ['https://digitalmenuapp.herokuapp.com/'];
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error('Not allowed by CORS'))
-//     }
-//   }
-// }
-
-// app.use(cors(corsOptions));
-// app.use(cors({origin: 'https://digitalmenuapp.herokuapp.com/'}));
-// app.use(cors());
-
-// app.use(function (req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://digitalmenuapp.herokuapp.com/');
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-//   next();
-// });
 
 
 // routes
