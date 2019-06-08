@@ -4,12 +4,12 @@ const {
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
-  let cookieToken = req.headers.cookie.split("=")[1]
-
+  let token = req.headers.cookie;
+  console.log(req.cookies)
   if (!token) {
     return res.status(401).send("Where is the token?");
   } else {
-
+    let cookieToken = token.split("=")[1]
     // verify a token symmetric - synchronous
     let userId = jwt.verify(cookieToken, process.env.SECRET)._id;
 
