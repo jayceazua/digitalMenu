@@ -8,12 +8,12 @@ const jwt = require('jsonwebtoken');
 
 const allRestaurants = async (req, res) => {
   try {
-    const restaurants = await User.findById().populate('restaurants')
+    const restaurants = await User.findById(req.user._id).populate('restaurants')
 
     res.status(200).send(restaurants.restaurants)
 
   } catch (error) {
-    res.status(500).json(error);
+    res.send(error);
   }
   // GET User Id from the cookies or headers.
   // let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
