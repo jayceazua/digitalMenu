@@ -20,7 +20,7 @@ const authenticate = (req, res, next) => {
           return Promise.reject()
         }
 
-        console.log("Authorized user!");
+        res.status(200).send(user);
         next();
       })
       .catch((err) => {
