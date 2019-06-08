@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const allRestaurants = async (req, res) => {
   try {
     const restaurants = await User.findById(req.user._id).populate('restaurants')
-
+    console.log(restaurants)
     res.status(200).send(restaurants.restaurants)
 
   } catch (error) {
