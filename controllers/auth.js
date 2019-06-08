@@ -1,9 +1,6 @@
 const {
   User
 } = require('../models/user');
-const {
-  authenticate
-} = require('../middleware/authenticate');
 const _ = require('lodash');
 
 // const jwt = require('jsonwebtoken');
