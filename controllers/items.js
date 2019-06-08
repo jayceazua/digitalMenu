@@ -1,61 +1,55 @@
-const {Item} = require('../models/item');
-const {Location} = require('../models/location')
-const mongoose = require('mongoose');
 
-// INDEX
-const allItems = (req, res) => {
-  Item.find().then((items) => {
-    res.status(200).json(items)
-  }).catch((err) => {
-    res.status(500).json(err)
-  })
-}
-// CREATE
+const { Item } = require('../models/item');
+const { Location } = require('../models/location')
+
+const allItems = async (req, res) => {
+  const items = await Location.findById(req.locationId).populate('items'); 
+  items ?
+    res.status(200).json(items.items)
+  :
+  res.status(500).json('Something went wrong.');
+};
+
 const addItem = async (req, res) => {
-  // need to research on how to do this cleaner
-  req.body.location = mongoose.Types.ObjectId(req.locationId)
-  const _location = await Location.findById(req.locationId);
   try {
-    const item = await new Item(req.body)
+    const _location = await Location.findById(req.locationId);
+    const item = await new Item(req.body);
     await item.save();
-    _location.items.push(item._id);
-    _location.save();
-    return res.json(item).status(200);
+    _location.items ? _location.items.push(item._id) : _location.items = [item._id];
+    await _location.save();
+    return res.status(200).send(item);
   } catch (err) {
-    return res.send(err).status(500);
+    return res.status(500).send(err);
   }
-}
-// READ
-const getItem = (req, res) => {
-  Item.findById(req.params.id)
-  .then((item) => {
-    res.status(200).json(item)
-  })
-  .catch((err) => {
-    res.status(500).json(err)
-  })
-}
-// UPDATE
-const updateItem = (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, req.body)
-  .then((item) => {
-    res.status(200).json(item)
-  })
-  .catch((err) => {
-    res.status(500).json(err)
-  })
-}
-// DELETE
+};
+
+const getItem = async (req, res) => {
+  try {
+    const item = await Item.findById(req.params.id);
+    res.status(200).json(item);
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+};
+
+const updateItem = async (req, res) => {
+  try {
+    _item = await Item.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json('Succesfully updated');
+  } catch (err) {
+    return res.status(500).send(err);
+  }
+};
+
 const deleteItem = async (req, res) => {
   Item.findByIdAndDelete(req.params.id)
-  .then((item) => {
-  // delete from the parent schema
-    res.status(200).json(item)
+  .then(() => {
+    res.status(200).json('Succesfully deleted.')
   })
   .catch((err) => {
     res.status(500).json(err)
   })
-}
+};
 
 module.exports = {
   allItems,

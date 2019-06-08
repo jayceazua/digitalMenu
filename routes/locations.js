@@ -5,32 +5,23 @@ const {
   updateLocation,
   deleteLocation
 } = require('../controllers/locations');
+const {
+  authenticate
+} = require('../middleware/authorization');
 
 const locationsRouter = require('express').Router();
 
-locationsRouter.route('/location')
-  // INDEX
-  .get(allLocations)
-  // CREATE
-  .post(addLocation);
+locationsRouter.get('/locations', allLocations);
 
-// NEW
-locationsRouter.get('/location/new', (req, res) => {
-  res.send('GET form to create a location');
-});
+locationsRouter.post('/location', authenticate, addLocation);
 
 locationsRouter.route('/location/:id')
   // SHOW
-  .get(getLocation)
+  .get(authenticate, getLocation)
   // UPDATE
-  .patch(updateLocation)
+  .patch(authenticate, updateLocation)
   // DELETE
-  .delete(deleteLocation);
-
-// EDIT
-locationsRouter.get('/location/:id/edit', (req, res) => {
-  res.send('GET form to edit');
-});
+  .delete(authenticate, deleteLocation);
 
 // connecting to individual items
 const items = require('./items');

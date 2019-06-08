@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const dbname = process.env.DB_NAME;
-const dbURI = process.env.MONGODB_URI || `mongodb://mongo:27017/${dbname}`;
+const dbURI = process.env.MONGODB_URI || `mongodb://localhost:27017/${dbname}`;
 mongoose.connect(dbURI, {
   useNewUrlParser: true
 });
