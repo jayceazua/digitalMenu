@@ -8,11 +8,9 @@ const jwt = require('jsonwebtoken');
 
 const allRestaurants = async (req, res) => {
   try {
-    const {
-      restaurants
-    } = await User.findById().populate('restaurants')
+    const restaurants = await User.findById().populate('restaurants')
 
-    res.status(200).send(restaurants)
+    res.status(200).send(restaurants.restaurants)
 
   } catch {
     res.status(500).json('Something went wrong.');
@@ -27,7 +25,7 @@ const allRestaurants = async (req, res) => {
 };
 
 const addRestaurant = async (req, res) => {
-  console.log("This is the req object:", req.user)
+  // console.log("This is the req object:", req.user)
   try {
     const restaurant = new Restaurant(req.body);
     req.user.restaurants ?
