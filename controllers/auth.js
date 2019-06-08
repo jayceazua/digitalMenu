@@ -18,7 +18,8 @@ const signup = async (req, res) => {
     const newUser = new User(req.body);
     await newUser.save();
 
-    const token = jwt.sign({
+    console.log(newUser._id)
+    let token = jwt.sign({
       _id: newUser._id
     }, process.env.SECRET, {
       expiresIn: "60 days"
@@ -26,9 +27,7 @@ const signup = async (req, res) => {
 
     res.cookie('dmToken', token);
     console.log("New user saved:", )
-    res.status(200).json({
-      token
-    });
+    res.send(200);
   } catch (err) {
     res.status(401).send(err);
   }
