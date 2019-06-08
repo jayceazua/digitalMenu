@@ -22,7 +22,7 @@ const signup = (req, res) => {
     sendEmail(user)
 
     res.header('x-auth', token)
-    res.cookie('cookie-auth', token)
+    // res.cookie('cookie-auth', token)
     return res.status(200).send(user)
   }).catch((err) => {
     res.status(400).send(err)
@@ -36,7 +36,7 @@ const login = (req, res) => {
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
       res.header('x-auth', token)
-      res.cookie('cookie-auth', token)
+
       return res.status(200).send(user)
     });
   }).catch((err) => {
