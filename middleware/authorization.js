@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
   let token = req.headers.cookie;
-  console.log(req.cookies)
+  console.log(token)
   if (!token) {
     return res.status(401).send("Where is the token?");
   } else {
@@ -22,12 +22,13 @@ const authenticate = (req, res, next) => {
         }
 
         // res.send(user);
-
+        console.log("In here!! Yay?")
         // console.log("I am here with the user:", user)
         req.user = user
         next();
       })
       .catch((err) => {
+        console.log(err)
         res.status(401).send();
       })
   }
