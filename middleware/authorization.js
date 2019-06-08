@@ -20,7 +20,8 @@ const authenticate = (req, res, next) => {
           return Promise.reject()
         }
 
-        res.status(200).send(user);
+        // res.send(user);
+        console.log("I am here with the fucking cookie:", cookieToken)
         next();
       })
       .catch((err) => {
