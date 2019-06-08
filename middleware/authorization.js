@@ -4,14 +4,13 @@ const {
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
-  let token = req.headers.cookie;
+  let token = req.cookies.dmToken;
 
   if (!token) {
-    return res.status(401).send("I am trying:", req);
+    return res.status(401).send("Where is the token?");
   } else {
-    let cookieToken = req.headers.cookie.split("=")[1]
     // verify a token symmetric - synchronous
-    let userId = jwt.verify(cookieToken, process.env.SECRET)._id;
+    let userId = jwt.verify(token, process.env.SECRET)._id;
 
     User.findById(userId)
       .then((user) => {
@@ -20,14 +19,13 @@ const authenticate = (req, res, next) => {
           return Promise.reject()
         }
 
-        // res.send(user);
 
         // console.log("I am here with the user:", user)
         req.user = user
         next();
       })
       .catch((err) => {
-        res.status(401).send();
+        res.status(401).send(err);
       })
   }
 
