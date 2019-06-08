@@ -20,7 +20,7 @@ const signup = (req, res) => {
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
-    res.cookie('dmToken', token, {
+    res.header('dmToken', token, {
       maxAge: 900000,
       httpOnly: true
     });

@@ -4,7 +4,7 @@ const {
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
-  let token = req.headers.cookie;
+  let token = req;
   console.log("this is the token", token)
   if (!token) {
     return res.status(401).send("Where is the token?");
