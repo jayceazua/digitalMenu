@@ -11,13 +11,14 @@ const authenticate = (req, res, next) => {
     let cookieToken = req.headers.cookie.split("=")[1]
     // verify a token symmetric - synchronous
     let userId = jwt.verify(cookieToken, process.env.SECRET)._id;
-
+    console.log("This shit is workin?", userId)
     User.findById(userId)
       .then((user) => {
         if (!user) {
           console.log("User was not found but the token is:", token)
           return Promise.reject()
         }
+        
         console.log("Authorized user!");
         next();
       })
