@@ -18,16 +18,19 @@ const signup = async (req, res) => {
     const newUser = new User(req.body);
     await newUser.save();
 
-    let token = jwt.sign({
+    const token = jwt.sign({
       _id: newUser._id
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
-
-    res.cookie('userToken', token);
-
-    console.log("New user saved:", )
-    res.send(token);
+    res.headers('dmToken', token, {
+      maxAge: 600000,
+      httpOnly: true
+    });
+    console.log("New user saved:", newUser)
+    return res.status(200).json({
+      newUser
+    });
   } catch (err) {
     res.status(401).send(err);
   }
@@ -55,7 +58,7 @@ const login = async (req, res) => {
       }, process.env.SECRET, {
         expiresIn: "60 days"
       });
-      res.cookie("dmToken", token, {
+      res.headers("dmToken", token, {
         maxAge: 900000,
         httpOnly: true
       });
