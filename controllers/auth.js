@@ -23,7 +23,7 @@ const signup = async (req, res) => {
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
-    res.headers('dmToken', token, {
+    res.cookie('dmToken', token, {
       maxAge: 600000,
       httpOnly: true
     });
@@ -59,7 +59,7 @@ const login = async (req, res) => {
         expiresIn: "60 days"
       });
 
-      res.headers("dmToken", token, {
+      res.cookie("dmToken", token, {
         maxAge: 900000,
         httpOnly: true
       });
