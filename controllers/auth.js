@@ -10,8 +10,8 @@ const {
 
 // SIGNUP
 const signup = (req, res) => {
-  let body = _.pick(req.body, ['firstName', 'lastName', 'email', 'phoneNumber', 'position', 'password']);
-  let user = new User(body);
+  // let body = _.pick(req.body, ['firstName', 'lastName', 'email', 'phoneNumber', 'position', 'password']);
+  let user = new User(req.body);
 
   user.save().then(() => {
 
