@@ -29,8 +29,8 @@ const signup = (req, res) => {
     // sendEmail(user)
 
 
-    // return res.status(200).send(user)
-    return res.redirect(200, '/dashboard')
+    return res.status(200).send(user)
+    // return res.redirect(200, '/dashboard')
   }).catch(err => res.json(err))
 }
 
