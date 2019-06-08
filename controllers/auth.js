@@ -18,9 +18,15 @@ const signup = (req, res) => {
   let user = new User(body);
 
   user.save().then(() => {
+
     return user.generateAuthToken();
+
   }).then((token) => {
+
     res.header('x-auth', token).send(user)
+    return res.status(200).json({
+      user
+    })
   }).catch((e) => {
     res.status(400).send(e)
   });
