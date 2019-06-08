@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const allRestaurants = async (req, res) => {
   // GET User Id from the cookies or headers.
   // let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
-  console.log("User id works:", req.user)
+  console.log("User id works:", req.user._id)
   const restaurants = await User.findById(req.user._id).populate('restaurants')
   restaurants ?
     res.status(200).json(restaurants.restaurants) :
@@ -32,6 +32,7 @@ const addRestaurant = async (req, res) => {
 };
 
 const getRestaurant = async (req, res) => {
+  console.log("This should be the restaurant id:", req.params.id)
   restaurant = await Restaurant.findById(req.params.id);
   restaurant ?
     res.status(200).json(restaurant) :
