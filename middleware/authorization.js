@@ -4,7 +4,7 @@ const {
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
-  let token = req.header('dmToken');
+  let token = req.header('x-token');
   console.log("this couls be it:", token)
   User.findByToken(token)
     .then((user) => {

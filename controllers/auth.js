@@ -22,7 +22,7 @@ const signup = (req, res) => {
     // send email
     // sendEmail(user)
 
-    res.header('dmToken', token).send(user)
+    res.header('x-token', token).send(user)
 
     // return res.status(200).send(user)
   }).catch((err) => {
@@ -36,7 +36,7 @@ const login = (req, res) => {
 
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
-      res.header('dmToken', token)
+      res.header('x-token', token)
 
       return res.status(200).send(user)
     });
