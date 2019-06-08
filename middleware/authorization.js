@@ -22,7 +22,7 @@ const authenticate = (req, res, next) => {
 
         // res.send(user);
 
-        console.log("I am here with the user:", user)
+        // console.log("I am here with the user:", user)
         req.user = user
         next();
       })
