@@ -21,7 +21,7 @@ const signup = (req, res) => {
     // send email
     sendEmail(user)
 
-    res.header('x-auth', token).json(user)
+    res.header('x-auth', token).send(user)
 
   }).catch((e) => {
     res.status(400).send(e)
