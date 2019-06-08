@@ -28,7 +28,7 @@ const signup = (req, res) => {
     // send email
     sendEmail(user)
     console.log("This is the token:", token)
-    console.log("This is the cookie:", res.cookie)
+    console.log("This is the cookie:", req.headers.cookie)
     return res.status(200).send(user)
   }).catch(err => res.json(err))
 }

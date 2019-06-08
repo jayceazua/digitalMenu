@@ -10,17 +10,17 @@ const {
   authenticate
 } = require('../middleware/authorization');
 
-restaurantsRouter.post('/restaurant', authenticate, addRestaurant);
+restaurantsRouter.post('/restaurant', addRestaurant);
 
-restaurantsRouter.get('/restaurants', authenticate, allRestaurants);
+restaurantsRouter.get('/restaurants', allRestaurants);
 
 restaurantsRouter.route('/restaurant/:id')
   // SHOW
-  .get(authenticate, getRestaurant)
+  .get(getRestaurant)
   // UPDATE
-  .patch(authenticate, updateRestaurant)
+  .patch(updateRestaurant)
   // DELETE
-  .delete(authenticate, deleteRestaurant);
+  .delete(deleteRestaurant);
 
 // connecting to individual menus
 const locations = require('./locations');
