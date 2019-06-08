@@ -12,8 +12,8 @@ const allRestaurants = async (req, res) => {
 
     res.status(200).send(restaurants.restaurants)
 
-  } catch {
-    res.status(500).json('Something went wrong.');
+  } catch (error) {
+    res.status(500).json(error);
   }
   // GET User Id from the cookies or headers.
   // let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
