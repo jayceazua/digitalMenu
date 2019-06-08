@@ -1,11 +1,11 @@
 const {
   User
 } = require('../models/user');
-const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
+
   let token = req.header('x-token');
-  console.log("this couls be it:", token)
+
   User.findByToken(token)
     .then((user) => {
       if (!user) {
@@ -14,7 +14,6 @@ const authenticate = (req, res, next) => {
 
       }
       req.user = user;
-      console.log(user)
       req.token = token;
       next();
     })
