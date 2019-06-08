@@ -25,6 +25,14 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: true
 }));
+
+// Disables CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.CROSS_ORIGIN);
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(express.static(path.join(__dirname, 'public'))); // <- maybe add this for testing
 // override with POST having ?_method=DELETE & ?_method=PUT
 app.use(methodOverride('X-HTTP-Method-Override'));
