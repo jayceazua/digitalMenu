@@ -1,7 +1,6 @@
 
 require('dotenv').config();
 const path = require('path');
-const cors = require('cors');
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -9,6 +8,7 @@ const methodOverride = require('method-override');
 const logger = require('morgan');
 const app = express();
 const port = process.env.PORT || 5000
+const cors = require('cors');
 // const Sentry = require('@sentry/node');
 // Sentry.init({ dsn: process.env.SENTRY_DSN });
 
@@ -38,6 +38,7 @@ app.use(methodOverride((req, res) => {
 const whitelist = ['https://digitalmenuapp.herokuapp.com/', 'localhost:3000'];
 const corsOptions = {
   origin: function (origin, callback) {
+    console.log('origin:', origin)
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
