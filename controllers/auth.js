@@ -29,7 +29,8 @@ const signup = (req, res) => {
     sendEmail(user)
     console.log("This is the token:", token)
 
-    return res.status(200).send(user)
+    // res.status(200).send(user)
+    return res.redirect(200, process.env.CROSS_ORIGIN + '/dashboard')
   }).catch(err => res.json(err))
 }
 
