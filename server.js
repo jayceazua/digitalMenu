@@ -1,3 +1,4 @@
+
 require('dotenv').config();
 const path = require('path');
 const cors = require('cors');
@@ -32,8 +33,16 @@ app.use(methodOverride((req, res) => {
   };
 }));
 
+app.use(cors({credentials: true, origin: 'https://temp-digitalmenu-backend.herokuapp.com/'}));
+// app.options('*', cors())
 
-app.use(cors({credentials: true, origin: 'https://digitalmenuapp.herokuapp.com/'}));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+  next();
+});
 
 // routes
 app.get('/', (req, res) => {
