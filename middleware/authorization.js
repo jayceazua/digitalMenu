@@ -1,10 +1,12 @@
-const {User} = require('../models/user');
+const {
+  User
+} = require('../models/user');
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
   let token = req.headers.cookie;
   if (!token) {
-    return res.status(401).send();
+    return res.status(401).send("I am trying!!!");
   } else {
     let cookieToken = req.headers.cookie.split("=")[1]
     // verify a token symmetric - synchronous
@@ -38,7 +40,7 @@ const authenticate = (req, res, next) => {
 //       if (!user) {
 
 //         return Promise.reject();
-        
+
 //       }
 //       req.user = user;
 //       req.token = token;

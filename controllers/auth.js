@@ -20,7 +20,7 @@ const signup = (req, res) => {
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
-    res.cookie('dmToken', token, {
+    res.cookie('nToken', token, {
       maxAge: 900000,
       httpOnly: true
     });
@@ -91,7 +91,7 @@ const login = (req, res) => {
           expiresIn: "60 days"
         });
         // Set a cookie and redirect to root
-        res.cookie("dmToken", token, {
+        res.cookie("nToken", token, {
           maxAge: 900000,
           httpOnly: true
         });
@@ -126,7 +126,7 @@ const login = (req, res) => {
 
 //LOGOUT
 const logout = (req, res) => {
-  res.clearCookie('dmToken');
+  res.clearCookie('nToken');
   res.json({
     "User": "Successfully logged out."
   });
