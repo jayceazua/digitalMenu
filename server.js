@@ -33,7 +33,7 @@ app.use(methodOverride((req, res) => {
   };
 }));
 
-// app.use(cors({credentials: true, origin: 'https://temp-digitalmenu-backend.herokuapp.com/'}));
+app.use(cors({origin: 'https://digitalmenuapp.herokuapp.com/'}));
 // app.options('*', cors())
 
 app.use(function (req, res, next) {
