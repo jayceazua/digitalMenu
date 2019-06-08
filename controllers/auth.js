@@ -30,9 +30,7 @@ const signup = (req, res) => {
 
 
     // return res.status(200).send(user)
-    return res.redirect(200, '/', {
-      user
-    })
+    return res.redirect(200, '/dashboard')
   }).catch(err => res.json(err))
 }
 
