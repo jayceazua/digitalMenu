@@ -14,7 +14,7 @@ const signup = (req, res) => {
   // let body = _.pick(req.body, ['firstName', 'lastName', 'email', 'phoneNumber', 'position', 'password']);
   let user = new User(req.body);
 
-  user.save().then(() => {
+  user.save().then((user) => {
 
     return user.generateAuthToken();
 
@@ -22,9 +22,9 @@ const signup = (req, res) => {
     // send email
     // sendEmail(user)
 
-    res.header('dmToken', token)
-    
-    return res.status(200).send(user)
+    res.header('dmToken', token).send(user)
+
+    // return res.status(200).send(user)
   }).catch((err) => {
     res.status(400).send(err)
   });

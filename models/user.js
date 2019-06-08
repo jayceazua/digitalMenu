@@ -55,13 +55,11 @@ let UserSchema = new Schema({
 
 
 
-
-
 // overriding method to show limited amount of data
 UserSchema.methods.toJSON = function () {
   let user = this;
   let userObject = user.toObject();
-  return _.pick(userObject, ['_id', 'email', 'firstName', 'phoneNumber', 'lastName']);
+  return userObject;
 }
 
 UserSchema.methods.generateAuthToken = function () {
@@ -119,9 +117,7 @@ UserSchema.statics.findByCredentials = function (email, password) {
     })
     .then((user) => {
       if (!user) {
-        // use this here to custom make if user is wrong
         return Promise.reject();
-
       }
 
       return new Promise((resolve, reject) => {
