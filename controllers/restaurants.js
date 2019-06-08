@@ -7,16 +7,27 @@ const {
 const jwt = require('jsonwebtoken');
 
 const allRestaurants = async (req, res) => {
+  try {
+    const {
+      restaurants
+    } = await User.findById().populate('restaurants')
+
+    res.status(200).send(restaurants)
+
+  } catch {
+    res.status(500).json('Something went wrong.');
+  }
   // GET User Id from the cookies or headers.
   // let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
-  console.log("User id works:", req.user._id)
-  const restaurants = await User.findById(req.user._id).populate('restaurants')
-  restaurants ?
-    res.status(200).json(restaurants.restaurants) :
-    res.status(500).json('Something went wrong.');
+  // console.log("User id works:", req.user._id)
+  // const restaurants = await User.findById(req.user._id).populate('restaurants')
+  // restaurants ?
+  // res.status(200).json(restaurants.restaurants) :
+  // res.status(500).json('Something went wrong.');
 };
 
 const addRestaurant = async (req, res) => {
+  console.log("This is the req object:", req.user)
   try {
     const restaurant = new Restaurant(req.body);
     req.user.restaurants ?
