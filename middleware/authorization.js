@@ -4,28 +4,31 @@ const {
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
-  let token = req.cookies.dmToken;
-  console.log("Currently here, do we have a cookie token:", token)
+  let cookieToken = req.headers.cookie.split("=")[1]
+
   if (!token) {
     return res.status(401).send("Where is the token?");
   } else {
+
     // verify a token symmetric - synchronous
-    let userId = jwt.verify(token, process.env.SECRET)._id;
-    console.log("Yes we do have a token but now are we getting the id:", userId)
+    let userId = jwt.verify(cookieToken, process.env.SECRET)._id;
+
     User.findById(userId)
       .then((user) => {
         if (!user) {
+          console.log("this does not make sense")
           // return something better than a promise reject.
           return Promise.reject()
         }
 
-        console.log("Sure the user is here but what is coming out:", user)
+        // res.send(user);
+
         // console.log("I am here with the user:", user)
         req.user = user
         next();
       })
       .catch((err) => {
-        res.status(401).send(err);
+        res.status(401).send();
       })
   }
 
