@@ -58,7 +58,6 @@ const login = async (req, res) => {
       }, process.env.SECRET, {
         expiresIn: "60 days"
       });
-
       res.cookie("dmToken", token, {
         maxAge: 900000,
         httpOnly: true
