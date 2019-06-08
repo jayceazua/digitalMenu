@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const allRestaurants = (req, res) => {
 
   Restaurant.find({}).then((restaurants) => {
-    return res.status(200).send([restaurants])
+    return res.status(200).send(restaurants)
   }).catch(err => res.json(err))
 
 
