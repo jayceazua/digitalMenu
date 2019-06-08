@@ -54,127 +54,103 @@ let UserSchema = new Schema({
 });
 
 
-// Must use function here! ES6 => functions do not bind this!
-UserSchema.pre("save", function (next) {
-  // ENCRYPT PASSWORD
-  const user = this;
-  if (!user.isModified("password")) {
-    return next();
-  }
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(user.password, salt, (err, hash) => {
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-// Need to use function to enable this.password to work.
-UserSchema.methods.comparePassword = function (password, done) {
-  bcrypt.compare(password, this.password, (err, isMatch) => {
-    done(err, isMatch);
-  });
-};
-UserSchema.index({
-  fields: 'text'
-});
 
 
 
 // overriding method to show limited amount of data
-// UserSchema.methods.toJSON = function () {
-//   let user = this;
-//   let userObject = user.toObject();
-//   return _.pick(userObject, ['_id', 'email', 'firstName', 'phoneNumber', 'lastName']);
-// }
+UserSchema.methods.toJSON = function () {
+  let user = this;
+  let userObject = user.toObject();
+  return _.pick(userObject, ['_id', 'email', 'firstName', 'phoneNumber', 'lastName']);
+}
 
-// UserSchema.methods.generateAuthToken = function () {
-//   let user = this;
-//   let access = 'auth';
-//   let token = jwt.sign({
-//     _id: user._id.toHexString(),
-//     access
-//   }, process.env.SECRET).toString();
-//   // user.tokens.push({ access, token })
-//   user.tokens = user.tokens.concat([{
-//     access,
-//     token
-//   }]);
-//   return user.save().then(() => {
-//     return token
-//   }).catch((err) => {
-//     throw err
-//   })
-// };
+UserSchema.methods.generateAuthToken = function () {
+  let user = this;
+  let access = 'auth';
+  let token = jwt.sign({
+    _id: user._id.toHexString(),
+    access
+  }, process.env.SECRET).toString();
+  // user.tokens.push({ access, token })
+  user.tokens = user.tokens.concat([{
+    access,
+    token
+  }]);
+  return user.save().then(() => {
+    return token
+  }).catch((err) => {
+    throw err
+  })
+};
 
-// UserSchema.methods.removeToken = function (token) {
-//   let user = this;
-//   return user.update({
-//     $pull: {
-//       tokens: {
-//         token
-//       }
-//     }
-//   });
-// };
+UserSchema.methods.removeToken = function (token) {
+  let user = this;
+  return user.update({
+    $pull: {
+      tokens: {
+        token
+      }
+    }
+  });
+};
 
-// UserSchema.statics.findByToken = function (token) {
-//   let User = this;
-//   let decoded;
+UserSchema.statics.findByToken = function (token) {
+  let User = this;
+  let decoded;
 
-//   try {
-//     decoded = jwt.verify(token, process.env.SECRET)
-//   } catch (e) {
-//     return Promise.reject()
-//   }
+  try {
+    decoded = jwt.verify(token, process.env.SECRET)
+  } catch (e) {
+    return Promise.reject()
+  }
 
-//   //success case
-//   return User.findOne({
-//     '_id': decoded._id,
-//     'tokens.token': token,
-//     'tokens.access': 'auth'
-//   })
-// };
+  //success case
+  return User.findOne({
+    '_id': decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
+  })
+};
 
-// UserSchema.statics.findByCredentials = function (email, password) {
-//   let User = this;
-//   return User.findOne({
-//       email
-//     })
-//     .then((user) => {
-//       if (!user) {
-//         // use this here to custom make if user is wrong
-//         return Promise.reject();
+UserSchema.statics.findByCredentials = function (email, password) {
+  let User = this;
+  return User.findOne({
+      email
+    })
+    .then((user) => {
+      if (!user) {
+        // use this here to custom make if user is wrong
+        return Promise.reject();
 
-//       }
+      }
 
-//       return new Promise((resolve, reject) => {
-//         bcrypt.compare(password, user.password, (err, res) => {
-//           if (res) {
-//             resolve(user)
-//           } else {
-//             reject()
-//           }
-//         });
-//       });
-//     });
-// };
+      return new Promise((resolve, reject) => {
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (res) {
+            resolve(user)
+          } else {
+            reject()
+          }
+        });
+      });
+    });
+};
 
-// UserSchema.pre('save', function (next) {
-//   let user = this;
+UserSchema.pre('save', function (next) {
+  let user = this;
 
-//   if (user.isModified('password')) {
-//     // user.password
-//     bcrypt.genSalt(10, (err, salt) => {
-//       bcrypt.hash(user.password, salt, (err, hash) => {
-//         user.password = hash;
-//         next();
-//       });
-//     });
-//   } else {
-//     next();
-//   }
-// });
+  if (user.isModified('password')) {
+    // user.password
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, (err, hash) => {
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
+    next();
+  }
+});
 
 let User = mongoose.model('User', UserSchema);
 
