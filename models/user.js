@@ -115,7 +115,9 @@ UserSchema.statics.findByCredentials = function (email, password) {
     })
     .then((user) => {
       if (!user) {
+        // use this here to custom make if user is wrong
         return Promise.reject();
+
       }
 
       return new Promise((resolve, reject) => {
