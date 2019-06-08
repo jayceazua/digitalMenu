@@ -13,8 +13,8 @@ const port = process.env.PORT || 5000
 
 // database connection
 require('./database/mongodb');
-
-app.use(cookieParser());
+app.use(express.cookieParser());
+// app.use(cookieParser());
 app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({
