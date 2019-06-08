@@ -6,15 +6,23 @@ const {
 } = require('../models/user');
 const jwt = require('jsonwebtoken');
 
-const allRestaurants = async (req, res) => {
-  try {
-    const restaurants = await User.findById(req.user._id).populate('restaurants')
-    console.log("Is the user being passed:", req.user._id)
-    res.status(200).send(restaurants.restaurants)
+const allRestaurants = (req, res) => {
 
-  } catch (error) {
-    res.send(error);
-  }
+  Restaurant.find({}).then((restaurants) => {
+    return res.status(200).send([restaurants])
+  }).catch(err => res.json(err))
+
+
+  // try {
+
+  /** One we get auth working we comment this out */
+  // const restaurants = await User.findById(req.user._id).populate('restaurants')
+  // console.log("Is the user being passed:", req.user._id)
+  // res.status(200).send(restaurants.restaurants)
+
+  // } catch (error) {
+  //   res.send(error);
+  // }
   // GET User Id from the cookies or headers.
   // let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
   // console.log("User id works:", req.user._id)
@@ -24,20 +32,23 @@ const allRestaurants = async (req, res) => {
   // res.status(500).json('Something went wrong.');
 };
 
-const addRestaurant = async (req, res) => {
-  // console.log("This is the req object:", req.user)
-  try {
-    const restaurant = new Restaurant(req.body);
-    req.user.restaurants ?
-      req.user.restaurants.push(restaurant) :
-      user.restaurants = [restaurant];
-    await restaurant.save();
-    await req.user.save();
-    // SendGrid.sendWebsiteRequestEmail(user);
-    res.status(200).json(restaurant)
-  } catch (err) {
-    res.status(500).json(err);
-  }
+const addRestaurant = (req, res) => {
+  const restaurant = new Restaurant(req.body);
+  restaurant.save().then((restaurant) => {
+    return res.status(200).json(restaurant)
+  }).catch(err => res.json(err))
+  // try {
+  //   const restaurant = new Restaurant(req.body);
+  //   req.user.restaurants ?
+  //     req.user.restaurants.push(restaurant) :
+  //     user.restaurants = [restaurant];
+  //   await restaurant.save();
+  //   await req.user.save();
+  //   // SendGrid.sendWebsiteRequestEmail(user);
+  //   res.status(200).json(restaurant)
+  // } catch (err) {
+  //   res.status(500).json(err);
+  // }
 };
 
 const getRestaurant = async (req, res) => {
@@ -62,7 +73,7 @@ const deleteRestaurant = async (req, res) => {
   // TEST THIS.
   try {
     await Restaurant.findByIdAndDelete(req.params.id);
-    await req.user.restaurants.remove(req.params.id);
+    // await req.user.restaurants.remove(req.params.id);
     res.status(200).json("Successfully deleted.");
   } catch (err) {
     res.status(500).json(err)
