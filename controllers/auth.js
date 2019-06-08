@@ -21,9 +21,7 @@ const signup = (req, res) => {
     // send email
     sendEmail(user)
 
-    res.header('x-auth', token).json({
-      user
-    })
+    res.header('x-auth', token).json(user)
 
   }).catch((e) => {
     res.status(400).send(e)
@@ -56,9 +54,7 @@ const login = (req, res) => {
 
   User.findByCredentials(body.email, body.password).then((user) => {
     return user.generateAuthToken().then((token) => {
-      res.header('x-auth', token).json({
-        user
-      });
+      res.header('x-auth', token).json(user);
     });
   }).catch((err) => {
     res.status(400).send(err)
