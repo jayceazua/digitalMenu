@@ -4,10 +4,10 @@ const {
 const {
   User
 } = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 const allRestaurants = async (req, res) => {
-
-  console.log("Find this shit", req.cookies.dmToken)
+  // GET User Id from the cookies or headers.
   let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
 
   const restaurants = await User.findById(userId).populate('restaurants')
