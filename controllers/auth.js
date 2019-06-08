@@ -23,8 +23,8 @@ const signup = (req, res) => {
 
     res.header('x-auth', token)
     return res.status(200).send(user)
-  }).catch((e) => {
-    res.status(400).send(e)
+  }).catch((err) => {
+    res.status(400).send(err)
   });
 }
 
