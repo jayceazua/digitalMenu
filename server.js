@@ -36,19 +36,13 @@ app.use(methodOverride((req, res) => {
 // app.use(cors({credentials: true, origin: 'https://temp-digitalmenu-backend.herokuapp.com/'}));
 // app.options('*', cors())
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://digitalmenuapp.herokuapp.com/');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
   next();
 });
 
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
 
 // routes
 app.get('/', (req, res) => {
