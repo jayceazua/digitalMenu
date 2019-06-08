@@ -26,7 +26,7 @@ const signup = async (req, res) => {
 
     res.cookie('dmToken', token);
     console.log("New user saved:", )
-    return res.status(200).json({
+    res.status(200).json({
       token
     });
   } catch (err) {
