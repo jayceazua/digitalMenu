@@ -34,7 +34,7 @@ app.use(methodOverride((req, res) => {
 }));
 
 // app.use(cors({origin: 'https://digitalmenuapp.herokuapp.com/'}));
-app.options('*', cors())
+app.use(cors());
 
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://digitalmenuapp.herokuapp.com/');
