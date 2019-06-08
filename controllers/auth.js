@@ -21,7 +21,7 @@ const signup = (req, res) => {
     // send email
     sendEmail(user)
 
-    res.header('x-auth', token).json({
+    res.cookie('x-auth', token).json({
       user
     })
 
