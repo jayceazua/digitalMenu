@@ -9,6 +9,7 @@ const {
 const {
   authenticate
 } = require('../middleware/authorization');
+const jwt = require('jsonwebtoken');
 
 restaurantsRouter.post('/restaurant', authenticate, addRestaurant);
 
