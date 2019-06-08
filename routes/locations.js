@@ -13,15 +13,15 @@ const locationsRouter = require('express').Router();
 
 locationsRouter.get('/locations', allLocations);
 
-locationsRouter.post('/location', addLocation);
+locationsRouter.post('/location', authenticate, addLocation);
 
 locationsRouter.route('/location/:id')
   // SHOW
-  .get(getLocation)
+  .get(authenticate, getLocation)
   // UPDATE
-  .patch(updateLocation)
+  .patch(authenticate, updateLocation)
   // DELETE
-  .delete(deleteLocation);
+  .delete(authenticate, deleteLocation);
 
 // connecting to individual items
 const items = require('./items');

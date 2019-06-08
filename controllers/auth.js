@@ -20,7 +20,7 @@ const signup = (req, res) => {
     }, process.env.SECRET, {
       expiresIn: "60 days"
     });
-    res.cookie('nToken', token, {
+    res.cookie('dmToken', token, {
       maxAge: 900000,
       httpOnly: true
     });
@@ -28,7 +28,7 @@ const signup = (req, res) => {
     // send email
     sendEmail(user)
     console.log("This is the token:", token)
-    console.log("This is the cookie:", req.headers.cookie)
+
     return res.status(200).send(user)
   }).catch(err => res.json(err))
 }
@@ -92,7 +92,7 @@ const login = (req, res) => {
           expiresIn: "60 days"
         });
         // Set a cookie and redirect to root
-        res.cookie("nToken", token, {
+        res.cookie("dmToken", token, {
           maxAge: 900000,
           httpOnly: true
         });
@@ -127,7 +127,7 @@ const login = (req, res) => {
 
 //LOGOUT
 const logout = (req, res) => {
-  res.clearCookie('nToken');
+  res.clearCookie('dmToken');
   res.json({
     "User": "Successfully logged out."
   });

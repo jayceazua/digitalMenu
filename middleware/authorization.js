@@ -15,6 +15,7 @@ const authenticate = (req, res, next) => {
     User.findById(userId)
       .then((user) => {
         if (!user) {
+          console.log("User was not found but the token is:", token)
           return Promise.reject()
         }
         console.log("Authorized user!");

@@ -10,16 +10,16 @@ const {
   authenticate
 } = require('../middleware/authorization');
 
-itemsRouter.get('/items', allItems)
+itemsRouter.get('/items', authenticate, allItems)
 
-itemsRouter.post('/item', addItem);
+itemsRouter.post('/item', authenticate, addItem);
 
 itemsRouter.route('/item/:id')
   // READ
-  .get(getItem)
+  .get(authenticate, getItem)
   // UPDATE
-  .patch(updateItem)
+  .patch(authenticate, updateItem)
   // DELETE
-  .delete(deleteItem);
+  .delete(authenticate, deleteItem);
 
 module.exports = itemsRouter
