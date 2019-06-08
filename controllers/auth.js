@@ -26,11 +26,11 @@ const signup = (req, res) => {
     });
 
     // send email
-    sendEmail(user)
-    console.log("This is the token:", token)
+    // sendEmail(user)
 
-    return res.status(200).send(user)
-    // return res.redirect(200, process.env.CROSS_ORIGIN + '/dashboard')
+
+    // return res.status(200).send(user)
+    return res.redirect(200, '/').send(token)
   }).catch(err => res.json(err))
 }
 
