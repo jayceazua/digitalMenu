@@ -6,8 +6,11 @@ const {
 } = require('../models/user');
 
 const allRestaurants = async (req, res) => {
-  console.log("Find this shit", req)
-  const restaurants = await User.findById(req.user._id).populate('restaurants')
+
+  console.log("Find this shit", req.cookies.dmToken)
+  let userId = jwt.verify(req.cookies.dmToken, process.env.SECRET)._id;
+
+  const restaurants = await User.findById(userId).populate('restaurants')
   restaurants ?
     res.status(200).json(restaurants.restaurants) :
     res.status(500).json('Something went wrong.');
