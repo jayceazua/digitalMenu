@@ -18,9 +18,12 @@ const signup = async (req, res) => {
     await newUser.save();
     
     const token = jwt.sign({ _id: newUser._id }, process.env.SECRET, { expiresIn: "60 days" });   
-    res.cookie('dmToken', token, { maxAge: 600000, httpOnly: true });
-    console.log("New user saved:", newUser)
-    return res.status(200).json({newUser});
+    res.cookie('nToken', token, { maxAge: 900000, httpOnly: false });
+    // console.log("New user saved:", newUser)
+    console.log("token:", token)
+
+    return res.status(200).json(newUser);
+    // res.redirect('http://localhost:3000/dashboard');
   } catch(err) {
     res.status(401).send(err);
   }
@@ -38,7 +41,7 @@ const login = async (req, res) => {
           res.status(401).send('Wrong Email or Password');
         };
         const token = jwt.sign({_id: user._id, username: user.username}, process.env.SECRET, { expiresIn: "60 days" });
-        res.cookie("dmToken", token, {maxAge: 900000, httpOnly:true});
+        res.cookie("nToken", token, {maxAge: 900000, httpOnly: false});
         return res.status(200).send(user);         
     });
   } catch (err) {
@@ -49,7 +52,8 @@ const login = async (req, res) => {
 //LOGOUT
 /** have users logout <- don't worry about this */
 const logout = (req, res) => {
-  res.clearCookie('dmToken');
+  console.log('here');
+  res.clearCookie('nToken');
   return res.status(200).send('User logged out.');
 };
 
