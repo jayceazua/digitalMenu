@@ -1,5 +1,5 @@
 # DigitalMenu
-<img style="height: 40px; width: 40px;" src="./assets/readme/DigiMenu.png"/>
+[GET DIFFERENT IMAGE]
 Stack: Node, Express, Mongoose switching to Django, Python, Echo, and Go
 
 ## Run Project locally
