@@ -1,1 +1,2 @@
-A database management platform for restaurants to manage their menus and share with third party applications.
+ - A database management platform for restaurants to manage their menus and share with third party applications.
+ - Allows third party applications like uber eats, grubhub, postmates, even the restaurant's own website to have valid menu information of items. 
