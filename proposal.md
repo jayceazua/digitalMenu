@@ -1,0 +1,1 @@
+A database management platform for restaurants to manage their menus and share with third party applications.
