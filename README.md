@@ -1,6 +1,6 @@
 # DigitalMenu
 [GET DIFFERENT IMAGE]
-Stack: Node, Express, Mongoose switching to Django, Python, Echo, and Go
+Stack: Node, Express, Mongoose switching to Django https://github.com/jayceazua/menuone_django
 
 ## Run Project locally
 1. Clone repository
