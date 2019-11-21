@@ -9,7 +9,7 @@ Stack: Node, Express, Mongoose switching to Django https://github.com/jayceazua/
 4. Remove the `sample` on the filename so it is your own `.env` file. 
 3. `$ docker-compose up`
 
-### Worse case
+### Worst case
  - if you have other docker project run `$ docker system prune` and press `y` to wipe everything out
 
 
