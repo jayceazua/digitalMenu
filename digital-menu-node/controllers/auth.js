@@ -11,7 +11,6 @@ const {
 // CREATE / SIGNUP
 /** Sign up users/ register them */
 const signup = (req, res) => {
-  // let body = _.pick(req.body, ['firstName', 'lastName', 'email', 'phoneNumber', 'position', 'password']);
   let user = new User(req.body);
 
   user.save().then((user) => {

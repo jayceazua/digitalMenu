@@ -107,7 +107,7 @@ Base URL: https://digitalmenu-intensive.herokuapp.com/
 
 
 ### User Narratives
- - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organize in one single source of truth.
+ - As a user, I want to update, add, or delete an individual item from my menu database, in order to have my entire menu organized in a single source of truth.
  - As a user, I want to be able to login, in order to view my restaurant’s menu.
  - As a user, I want to give out different API Keys to vendors, in order to allow them to get a secure access to my menu.
   - As a user, I want to manage my vendors, in order to delete and add vendors that are allowed to use my menu.

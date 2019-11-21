@@ -4,6 +4,7 @@ const {
 const {
   User
 } = require('../models/user');
+
 const jwt = require('jsonwebtoken');
 
 const allRestaurants = (req, res) => {
